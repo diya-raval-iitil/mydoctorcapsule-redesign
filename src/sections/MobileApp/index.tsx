@@ -16,6 +16,11 @@ import { SectionLabel } from '@/components/common/Typography';
 import {
   FadeLeft,
   FadeRight,
+  SectionReveal,
+  SectionBadge,
+  SectionHeading,
+  SectionBody,
+  SectionActions,
   StaggerContainer,
   StaggerItem,
 } from '@/components/common/MotionWrappers';
@@ -62,26 +67,57 @@ function MobileAppSection() {
       background="transparent"
       padding="default"
       fullWidth
-      className="bg-mobile-gradient overflow-hidden"
+      className="bg-mobile-gradient"
     >
       <div className="mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)]">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <FadeLeft>
-            <SectionLabel className="!text-accent mb-4">
-              Mobile App
-            </SectionLabel>
-            <h2 className="type-section-title mb-6 text-white">
-              Your practice,
-              <br />
-              <span className="text-gradient-hero">in your pocket.</span>
-            </h2>
-            <p className="font-body mb-10 max-w-xl text-base leading-relaxed text-white/60">
-              The MyDoctorCapsule app puts complete practice intelligence on
-              your phone. Manage appointments, review analytics, respond to
-              patients, and monitor your online reputation - anywhere, anytime.
-            </p>
+            <SectionReveal>
+              <SectionBadge>
+                <SectionLabel className="!text-accent mb-0">
+                  Mobile App
+                </SectionLabel>
+              </SectionBadge>
+              <SectionHeading>
+                <h2 className="type-section-title text-white">
+                  Your practice,
+                  <br />
+                  <span className="text-gradient-hero">in your pocket.</span>
+                </h2>
+              </SectionHeading>
+              <SectionBody className="mt-6">
+                <p className="font-body max-w-xl text-base leading-relaxed text-white/60">
+                  The MyDoctorCapsule app puts complete practice intelligence on
+                  your phone. Manage appointments, review analytics, respond to
+                  patients, and monitor your online reputation - anywhere,
+                  anytime.
+                </p>
+              </SectionBody>
+              <SectionActions className="mt-10 flex flex-col gap-4 sm:flex-row">
+                <motion.a
+                  href="#"
+                  aria-label="Download on the App Store"
+                  className="focus-ring font-body inline-flex items-center justify-center gap-3 rounded-[16px] border border-white/20 bg-white/5 px-6 py-3.5 text-[15px] font-semibold text-white hover:border-white/40 hover:bg-white/10"
+                  whileHover={ctaHoverMotion}
+                  whileTap={tapMotion}
+                >
+                  <FaApple className="h-5 w-5" aria-hidden="true" />
+                  App Store
+                </motion.a>
+                <motion.a
+                  href="#"
+                  aria-label="Get it on Google Play"
+                  className="focus-ring font-body inline-flex items-center justify-center gap-3 rounded-[16px] border border-white/20 bg-white/5 px-6 py-3.5 text-[15px] font-semibold text-white hover:border-white/40 hover:bg-white/10"
+                  whileHover={ctaHoverMotion}
+                  whileTap={tapMotion}
+                >
+                  <FaGooglePlay className="h-4 w-4" aria-hidden="true" />
+                  Google Play
+                </motion.a>
+              </SectionActions>
+            </SectionReveal>
 
-            <StaggerContainer className="mb-10 max-w-xl space-y-4">
+            <StaggerContainer className="mb-10 mt-10 max-w-xl space-y-4">
               {MOBILE_FEATURES.map((feature) => {
                 const Icon = featureIcons[feature.icon];
                 return (
@@ -102,29 +138,6 @@ function MobileAppSection() {
                 );
               })}
             </StaggerContainer>
-
-            <div className="flex flex-col gap-4 sm:flex-row">
-              <motion.a
-                href="#"
-                aria-label="Download on the App Store"
-                className="focus-ring font-body inline-flex items-center justify-center gap-3 rounded-[16px] border border-white/20 bg-white/5 px-6 py-3.5 text-[15px] font-semibold text-white transition-all duration-300 hover:border-white/40 hover:bg-white/10 hover:shadow-[0_16px_40px_rgba(26,86,219,0.16)]"
-                whileHover={ctaHoverMotion}
-                whileTap={tapMotion}
-              >
-                <FaApple className="h-5 w-5" aria-hidden="true" />
-                App Store
-              </motion.a>
-              <motion.a
-                href="#"
-                aria-label="Get it on Google Play"
-                className="focus-ring font-body inline-flex items-center justify-center gap-3 rounded-[16px] border border-white/20 bg-white/5 px-6 py-3.5 text-[15px] font-semibold text-white transition-all duration-300 hover:border-white/40 hover:bg-white/10 hover:shadow-[0_16px_40px_rgba(26,86,219,0.16)]"
-                whileHover={ctaHoverMotion}
-                whileTap={tapMotion}
-              >
-                <FaGooglePlay className="h-4 w-4" aria-hidden="true" />
-                Google Play
-              </motion.a>
-            </div>
           </FadeLeft>
 
           <FadeRight className="flex w-full justify-center lg:justify-end">
@@ -210,7 +223,7 @@ function MobileAppSection() {
               </motion.div>
 
               <motion.div
-                className="border-border-light absolute top-[18%] -right-1 z-20 w-[230px] rounded-[16px] border bg-white p-4 shadow-[0_20px_40px_rgba(0,0,0,0.25)] sm:-right-8"
+                className="border-border-light absolute top-[18%] -right-1 z-20 w-[min(230px,70vw)] rounded-[16px] border bg-white p-4 shadow-[0_20px_40px_rgba(0,0,0,0.25)] sm:-right-8"
                 animate={prefersReducedMotion ? undefined : { y: [0, -3, 0] }}
                 transition={
                   prefersReducedMotion ? undefined : continuousMotion.floatSoft
@@ -233,7 +246,7 @@ function MobileAppSection() {
               </motion.div>
 
               <motion.div
-                className="border-border-light absolute top-[45%] -left-2 z-20 w-[200px] rounded-[16px] border bg-white p-4 shadow-[0_20px_40px_rgba(0,0,0,0.25)] sm:-left-12"
+                className="border-border-light absolute top-[45%] -left-2 z-20 w-[min(200px,60vw)] rounded-[16px] border bg-white p-4 shadow-[0_20px_40px_rgba(0,0,0,0.25)] sm:-left-12"
                 animate={prefersReducedMotion ? undefined : { y: [0, 3, 0] }}
                 transition={
                   prefersReducedMotion

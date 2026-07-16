@@ -1,19 +1,25 @@
-import { motionTransition } from './transitions';
+import type { Transition } from 'framer-motion';
 
-export const hoverMotion = {
+const hoverTransition: Transition = { duration: 0.3, ease: 'easeInOut' };
+
+export const cardHoverMotion = {
   scale: 1.01,
-  transition: motionTransition.hover,
+  boxShadow:
+    '0 0 0 1px rgba(26, 86, 219, 0.25), 0 24px 70px rgba(15, 23, 42, 0.12)',
+  transition: hoverTransition,
 };
+
+export const hoverMotion = cardHoverMotion;
 
 export const ctaHoverMotion = {
   scale: 1.02,
-  boxShadow: '0 12px 40px rgba(26, 86, 219, 0.28)',
-  transition: motionTransition.hover,
+  boxShadow: '0 12px 40px rgba(26, 86, 219, 0.35)',
+  transition: hoverTransition,
 };
 
 export const iconHoverMotion = {
   scale: 1.05,
-  transition: motionTransition.hover,
+  transition: hoverTransition,
 };
 
 export const tapMotion = {
@@ -22,10 +28,10 @@ export const tapMotion = {
 
 export const arrowHoverMotion = {
   x: 2,
-  transition: motionTransition.hover,
+  transition: hoverTransition,
 };
 
 export const iconBackHoverMotion = {
   x: -2,
-  transition: motionTransition.hover,
+  transition: hoverTransition,
 };

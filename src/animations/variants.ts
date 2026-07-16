@@ -3,7 +3,8 @@ import { motionDuration, motionEase, motionTransition } from './transitions';
 
 export const defaultViewport = {
   once: true,
-  amount: 0.2,
+  amount: 0.15,
+  margin: '0px 0px -40px 0px',
 } as const;
 
 export const fadeUp: Variants = {
@@ -163,6 +164,72 @@ export const navbarItem: Variants = {
   },
 };
 
+export const sectionRevealContainer: Variants = {
+  hidden: { opacity: 1 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.04,
+    },
+  },
+};
+
+export const sectionBadge: Variants = {
+  hidden: { opacity: 0, y: 16, filter: 'blur(8px)' },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: motionTransition.large,
+  },
+};
+
+export const sectionHeading: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: motionTransition.large,
+  },
+};
+
+export const sectionBody: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: motionTransition.default,
+  },
+};
+
+export const sectionActions: Variants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: motionTransition.default,
+  },
+};
+
+export const sectionImage: Variants = {
+  hidden: { opacity: 0, scale: 0.96 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { ...motionTransition.large, delay: 0.08 },
+  },
+};
+
+export const sectionFooter: Variants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: motionTransition.default,
+  },
+};
+
 export const fadeUpVariants = fadeUp;
 export const fadeDownVariants = fadeDown;
 export const fadeLeftVariants = fadeLeft;
@@ -176,3 +243,10 @@ export const staggerItemVariants = staggerItem;
 export const staggerFastVariants = staggerFast;
 export const navbarContainerVariants = navbarContainer;
 export const navbarItemVariants = navbarItem;
+export const sectionRevealContainerVariants = sectionRevealContainer;
+export const sectionBadgeVariants = sectionBadge;
+export const sectionHeadingVariants = sectionHeading;
+export const sectionBodyVariants = sectionBody;
+export const sectionActionsVariants = sectionActions;
+export const sectionImageVariants = sectionImage;
+export const sectionFooterVariants = sectionFooter;

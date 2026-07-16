@@ -28,7 +28,7 @@ function ReviewCardComponent({
   return (
     <motion.article
       className={cn(
-        'flex h-full flex-col rounded-[18px] border border-border bg-white p-8 shadow-[var(--shadow-card)] transition-all duration-300 hover:border-primary/20 hover:shadow-[var(--shadow-card-hover)]',
+        'flex h-full flex-col rounded-[18px] border border-border bg-white p-8 shadow-[var(--shadow-card)] hover:border-primary/20 hover:shadow-[var(--shadow-card-hover)]',
         className,
       )}
       whileHover={hoverMotion}

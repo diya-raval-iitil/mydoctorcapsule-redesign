@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { motion } from 'framer-motion';
 import { Target, Eye, Lightbulb } from 'lucide-react';
-import { hoverMotion } from '@/animations';
+import { cardHoverMotion } from '@/animations';
 import { Section } from '@/components/common/Section';
 import { StaggerContainer, StaggerItem } from '@/components/common/MotionWrappers';
 import { cn } from '@/utils/cn';
@@ -43,12 +43,12 @@ function MissionVisionSection() {
             <StaggerItem key={card.id} className="h-full">
               <motion.article
                 className={cn(
-                  'flex h-full flex-col overflow-hidden p-10 transition-shadow duration-300',
+                  'flex h-full flex-col overflow-hidden p-10',
                   card.featured
                     ? 'rounded-[18px] border border-border-light bg-gradient-to-br from-navy to-navy-light text-white shadow-[var(--shadow-card)]'
                     : 'card-surface hover:border-primary/20 hover:shadow-[var(--shadow-card-hover)]',
                 )}
-                whileHover={hoverMotion}
+                whileHover={cardHoverMotion}
               >
                 <div
                   className={cn(

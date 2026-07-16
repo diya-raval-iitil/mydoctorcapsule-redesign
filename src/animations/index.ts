@@ -24,6 +24,20 @@ export {
   navbarItem,
   navbarContainerVariants,
   navbarItemVariants,
+  sectionRevealContainer,
+  sectionBadge,
+  sectionHeading,
+  sectionBody,
+  sectionActions,
+  sectionImage,
+  sectionFooter,
+  sectionRevealContainerVariants,
+  sectionBadgeVariants,
+  sectionHeadingVariants,
+  sectionBodyVariants,
+  sectionActionsVariants,
+  sectionImageVariants,
+  sectionFooterVariants,
 } from './variants';
 export {
   continuousMotion,
@@ -33,7 +47,14 @@ export {
   motionDuration as MOTION_DURATION,
   motionEase as MOTION_EASE,
 } from './transitions';
+export { fadeLeftVariants, fadeRightVariants, slideUpVariants } from './slide';
 export {
+  staggerContainerVariants,
+  staggerItemVariants,
+  staggerFastVariants,
+} from './stagger';
+export {
+  cardHoverMotion,
   arrowHoverMotion,
   ctaHoverMotion,
   hoverMotion,
@@ -41,10 +62,4 @@ export {
   iconHoverMotion,
   tapMotion,
 } from './motion';
-export { fadeLeftVariants, fadeRightVariants, slideUpVariants } from './slide';
-export {
-  staggerContainerVariants,
-  staggerItemVariants,
-  staggerFastVariants,
-} from './stagger';
 export { useReducedMotion } from './hooks';

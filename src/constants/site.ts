@@ -10,7 +10,7 @@ export const VIEWPORT_ANIMATION = {
 export const STATS = [
   { value: 2400, suffix: '+', label: 'Healthcare Providers', icon: 'building' as const },
   { value: 180, suffix: 'K+', label: 'Patient Appointments', icon: 'calendar' as const },
-  { value: 4.9, suffix: '*', label: 'Average Platform Rating', icon: 'star' as const, decimals: 1 },
+  { value: 4.9, suffix: '★', label: 'Average Platform Rating', icon: 'star' as const, decimals: 1 },
   { value: 67, suffix: '%', label: 'Avg. Practice Growth', icon: 'trending' as const },
 ] as const;
 

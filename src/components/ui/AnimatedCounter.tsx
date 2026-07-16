@@ -1,5 +1,6 @@
 import { memo, useEffect, useRef, useState } from 'react';
-import { motion, useInView, useSpring, useTransform } from 'framer-motion';
+import { useInView } from 'framer-motion';
+import { useReducedMotion } from '@/hooks/useReducedMotion';
 
 interface AnimatedCounterProps {
   value: number;
@@ -8,38 +9,53 @@ interface AnimatedCounterProps {
   duration?: number;
 }
 
+const easeOutExpo = (t: number): number =>
+  t >= 1 ? 1 : 1 - Math.pow(2, -10 * t);
+
 function AnimatedCounterComponent({
   value,
   suffix = '',
   decimals = 0,
-  duration = 2,
+  duration = 2000,
 }: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.5 });
-  const [hasAnimated, setHasAnimated] = useState(false);
-
-  const spring = useSpring(0, {
-    duration: duration * 1000,
-    bounce: 0,
-  });
-
-  const display = useTransform(spring, (current) => {
-    if (decimals > 0) {
-      return current.toFixed(decimals);
-    }
-    return Math.floor(current).toLocaleString();
-  });
+  const isInView = useInView(ref, { once: true, amount: 0.4 });
+  const prefersReducedMotion = useReducedMotion();
+  const [display, setDisplay] = useState(0);
 
   useEffect(() => {
-    if (isInView && !hasAnimated) {
-      spring.set(value);
-      setHasAnimated(true);
+    if (prefersReducedMotion) {
+      setDisplay(value);
+      return;
     }
-  }, [isInView, hasAnimated, spring, value]);
+
+    if (!isInView) return;
+
+    let frameId = 0;
+    const start = performance.now();
+
+    const tick = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      setDisplay(easeOutExpo(progress) * value);
+      if (progress < 1) {
+        frameId = requestAnimationFrame(tick);
+      } else {
+        setDisplay(value);
+      }
+    };
+
+    frameId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frameId);
+  }, [isInView, value, duration, prefersReducedMotion]);
+
+  const formatted =
+    decimals > 0
+      ? display.toFixed(decimals)
+      : Math.round(display).toLocaleString();
 
   return (
-    <span ref={ref}>
-      <motion.span>{display}</motion.span>
+    <span ref={ref} className="tabular-nums">
+      {formatted}
       {suffix}
     </span>
   );

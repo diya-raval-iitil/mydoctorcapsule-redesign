@@ -7,26 +7,37 @@ import {
   BodyText,
 } from '@/components/common/Typography';
 import {
+  SectionReveal,
+  SectionBadge,
+  SectionHeading,
+  SectionBody,
   StaggerContainer,
   StaggerItem,
 } from '@/components/common/MotionWrappers';
 import { FEATURES } from '@/constants/features';
 import { cn } from '@/utils/cn';
-import { hoverMotion, iconHoverMotion } from '@/animations';
+import { cardHoverMotion, iconHoverMotion } from '@/animations';
 
 function FeaturesSection() {
   return (
     <Section id="features" background="surface" padding="default">
-      <div className="mb-16 max-w-4xl text-left">
-        <SectionLabel className="mb-4">Platform Features</SectionLabel>
-        <HighlightHeading highlight="to grow." className="mb-5">
-          Everything your practice needs
-        </HighlightHeading>
-        <BodyText className="max-w-2xl">
-          From your first Google impression to a loyal patient relationship -
-          MyDoctorCapsule covers every touchpoint of the modern patient journey.
-        </BodyText>
-      </div>
+      <SectionReveal className="mb-16 max-w-4xl text-left">
+        <SectionBadge className="mb-4">
+          <SectionLabel className="mb-0">Platform Features</SectionLabel>
+        </SectionBadge>
+        <SectionHeading>
+          <HighlightHeading highlight="to grow." className="mb-0">
+            Everything your practice needs
+          </HighlightHeading>
+        </SectionHeading>
+        <SectionBody className="mt-5 max-w-2xl">
+          <BodyText>
+            From your first Google impression to a loyal patient relationship -
+            MyDoctorCapsule covers every touchpoint of the modern patient
+            journey.
+          </BodyText>
+        </SectionBody>
+      </SectionReveal>
 
       <StaggerContainer className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {FEATURES.map((feature) => {
@@ -37,12 +48,12 @@ function FeaturesSection() {
             <StaggerItem key={feature.id}>
               <motion.article
                 className={cn(
-                  'hover:border-primary/20 relative flex h-full w-full flex-col items-start overflow-hidden p-8 transition-all duration-300 hover:shadow-[var(--shadow-card-hover)]',
+                  'hover:border-primary/20 relative flex h-full w-full flex-col items-start overflow-hidden p-8 hover:shadow-[var(--shadow-card-hover)]',
                   'card-surface',
                   isFeatured && 'bg-white',
                   feature.glowClass,
                 )}
-                whileHover={hoverMotion}
+                whileHover={cardHoverMotion}
               >
                 <motion.div
                   className={cn(

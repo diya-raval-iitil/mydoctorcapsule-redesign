@@ -112,12 +112,12 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
+    html:focus-within {
+      scroll-behavior: auto;
+    }
+
+    .marquee-animate {
+      animation: none;
     }
   }
 }
@@ -151,19 +151,23 @@
 
   .bg-hero-gradient {
     background: linear-gradient(
-      149deg,
+      90deg,
       #050d1f 0%,
-      #0a1c3e 82.91%,
-      #0c2461 145.1%,
-      #0e2a6b 207.28%
+      #050d1f 82.91%,
+      #0a1c3e 145.1%,
+      #0c2461 207.28%
     );
   }
 
-  .bg-hero-radial {
-    background:
-      radial-gradient(circle at -8% 45%, rgba(26, 86, 219, 0.2) 0 0, transparent 34%),
-      radial-gradient(circle at 102% 90%, rgba(26, 86, 219, 0.2) 0 0, transparent 34%);
+  .hero-glow {
+    position: absolute;
+    width: 384px;
+    height: 384px;
+    border-radius: 29826200px;
+    opacity: 0.2;
+    background: #1a56db;
     filter: blur(64px);
+    pointer-events: none;
   }
 
   .bg-cta-radial {
@@ -291,6 +295,38 @@
   .marquee-track {
     will-change: transform;
     transform: translate3d(0, 0, 0);
+  }
+
+  .marquee-animate {
+    animation: marquee-scroll 32s linear infinite;
+  }
+
+  .marquee-animate:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee-scroll {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  .card-hover {
+    transition:
+      transform 300ms ease-in-out,
+      box-shadow 300ms ease-in-out,
+      border-color 300ms ease-in-out;
+    will-change: transform;
+  }
+
+  .card-hover:hover {
+    transform: scale(1.01);
+    box-shadow:
+      0 0 0 1px rgba(26, 86, 219, 0.25),
+      0 24px 70px rgba(15, 23, 42, 0.12);
   }
 
   .focus-ring {

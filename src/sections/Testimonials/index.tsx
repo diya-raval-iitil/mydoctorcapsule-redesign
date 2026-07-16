@@ -4,7 +4,9 @@ import { SectionLabel, SectionHeading } from '@/components/common/Typography';
 import { ReviewCard } from '@/components/ui/ReviewCard';
 import { TESTIMONIALS } from '@/constants/testimonials';
 import {
-  FadeUp,
+  SectionReveal,
+  SectionBadge,
+  SectionHeading as SectionHeadingReveal,
   StaggerContainer,
   StaggerItem,
 } from '@/components/common/MotionWrappers';
@@ -12,10 +14,14 @@ import {
 function TestimonialsSection() {
   return (
     <Section id="testimonials" background="surface-alt" padding="default">
-      <FadeUp className="mx-auto mb-16 max-w-3xl text-center">
-        <SectionLabel className="mb-4">Doctor Stories</SectionLabel>
-        <SectionHeading>Real doctors. Real growth.</SectionHeading>
-      </FadeUp>
+      <SectionReveal className="mx-auto mb-16 max-w-3xl text-center">
+        <SectionBadge>
+          <SectionLabel className="mb-0">Doctor Stories</SectionLabel>
+        </SectionBadge>
+        <SectionHeadingReveal>
+          <SectionHeading>Real doctors. Real growth.</SectionHeading>
+        </SectionHeadingReveal>
+      </SectionReveal>
 
       <StaggerContainer className="grid gap-6 sm:grid-cols-2">
         {TESTIMONIALS.map((testimonial) => (

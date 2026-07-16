@@ -5,9 +5,11 @@ import { Section } from '@/components/common/Section';
 import { Button } from '@/components/common/Button';
 import { SectionLabel } from '@/components/common/Typography';
 import {
-  FadeUp,
-  StaggerContainer,
-  StaggerItem,
+  SectionReveal,
+  SectionBadge,
+  SectionHeading,
+  SectionBody,
+  SectionActions,
 } from '@/components/common/MotionWrappers';
 import { CTA_META } from '@/constants/site';
 import { motionTransition } from '@/animations';
@@ -31,47 +33,49 @@ function CTASection() {
       />
 
       <div className="relative mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)]">
-        <FadeUp className="mx-auto max-w-3xl text-center">
-          <SectionLabel className="mb-6 !text-white/50">
-            Get Started Today
-          </SectionLabel>
-          <h2 className="type-section-title-cta mb-6 text-white">
-            Your next 100 patients are searching right now.
-          </h2>
-          <p className="font-body mb-10 text-base leading-relaxed text-white/60">
-            Join 2,400+ doctors who chose MyDoctorCapsule to build a thriving,
-            future-proof practice. 14-day free trial. No credit card required.
-          </p>
+        <SectionReveal className="mx-auto max-w-3xl text-center">
+          <SectionBadge>
+            <SectionLabel className="mb-0 !text-white/50">
+              Get Started Today
+            </SectionLabel>
+          </SectionBadge>
+          <SectionHeading>
+            <h2 className="type-section-title-cta text-white">
+              Your next 100 patients are searching right now.
+            </h2>
+          </SectionHeading>
+          <SectionBody className="mt-6">
+            <p className="font-body text-base leading-relaxed text-white/60">
+              Join 2,400+ doctors who chose MyDoctorCapsule to build a thriving,
+              future-proof practice. 14-day free trial. No credit card required.
+            </p>
+          </SectionBody>
 
-          <StaggerContainer className="mb-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <StaggerItem>
-              <Button
-                variant="primary"
-                size="md"
-                href="#"
-                ariaLabel="Start your free trial"
-                icon={ArrowRight}
-                iconPosition="right"
-              >
-                Start Your Free Trial
-              </Button>
-            </StaggerItem>
-            <StaggerItem>
-              <Button
-                variant="outline"
-                size="md"
-                href="#contact"
-                ariaLabel="Talk to an advisor"
-                icon={Phone}
-                iconPosition="left"
-              >
-                Talk to an Advisor
-              </Button>
-            </StaggerItem>
-          </StaggerContainer>
+          <SectionActions className="mt-10 mb-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Button
+              variant="primary"
+              size="md"
+              href="#"
+              ariaLabel="Start your free trial"
+              icon={ArrowRight}
+              iconPosition="right"
+            >
+              Start Your Free Trial
+            </Button>
+            <Button
+              variant="outline"
+              size="md"
+              href="#contact"
+              ariaLabel="Talk to an advisor"
+              icon={Phone}
+              iconPosition="left"
+            >
+              Talk to an Advisor
+            </Button>
+          </SectionActions>
 
           <p className="text-sm text-white/40">{CTA_META.join(' + ')}</p>
-        </FadeUp>
+        </SectionReveal>
       </div>
     </Section>
   );

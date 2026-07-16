@@ -1,19 +1,23 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { MotionConfig } from 'framer-motion';
+import { LenisProvider } from '@/providers/LenisProvider';
+import { IntroProvider, IntroOverlay } from '@/components/intro';
 import Home from '@/pages/Home';
-import { useLenis } from '@/hooks/useLenis';
 
 function App() {
-  useLenis();
-
   return (
-    <MotionConfig reducedMotion="user">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
-      </BrowserRouter>
-    </MotionConfig>
+    <LenisProvider>
+      <IntroProvider>
+        <MotionConfig reducedMotion="user">
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Home />} />
+            </Routes>
+          </BrowserRouter>
+          <IntroOverlay />
+        </MotionConfig>
+      </IntroProvider>
+    </LenisProvider>
   );
 }
 

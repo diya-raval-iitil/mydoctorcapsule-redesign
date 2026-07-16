@@ -55,7 +55,7 @@ function ButtonComponent({
   iconPosition = 'right',
 }: ButtonProps) {
   const classes = cn(
-    'font-body inline-flex items-center justify-center gap-2 text-center font-semibold select-none transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+    'font-body inline-flex items-center justify-center gap-2 text-center font-semibold select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
     'group',
     variantStyles[variant],
     sizeStyles[size],

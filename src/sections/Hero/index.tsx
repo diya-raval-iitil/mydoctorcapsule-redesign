@@ -4,22 +4,34 @@ import { CircleCheck } from 'lucide-react';
 import { Badge } from '@/components/common/Badge';
 import { Button } from '@/components/common/Button';
 import { Container } from '@/components/common/Container';
-import {
-  StaggerContainer,
-  StaggerItem,
-} from '@/components/common/MotionWrappers';
 import { DashboardPreview } from '@/components/ui/DashboardPreview';
 import { TRUST_INDICATORS } from '@/constants/site';
 import { ArrowRight, Phone } from 'lucide-react';
 import { heroContainer, heroItem } from '@/animations';
+import { useIntro } from '@/components/intro';
 
 function HeroSection() {
+  const { enabled, config } = useIntro();
+
   return (
     <section className="bg-hero-gradient relative min-h-screen overflow-hidden pt-20">
       <div
-        className="bg-hero-radial pointer-events-none absolute inset-0"
+        className="hero-glow top-1/2 left-[-192px] -translate-y-1/2"
         aria-hidden="true"
       />
+      <div
+        className="hero-glow right-[-192px] bottom-[-192px]"
+        aria-hidden="true"
+      />
+
+      {enabled && (
+        <div
+          id={config.heroAnchorId}
+          className="pointer-events-none absolute top-28 right-8 z-20 md:right-12"
+          style={{ width: config.heroLogoSize, height: config.heroLogoSize }}
+          aria-hidden="true"
+        />
+      )}
 
       <Container className="relative z-10 flex flex-col items-center pt-16 pb-0 text-center sm:pt-20">
         <motion.div
@@ -77,23 +89,24 @@ function HeroSection() {
             </div>
           </motion.div>
 
-          <motion.div variants={heroItem} className="w-full">
-            <StaggerContainer className="mb-16 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 px-4">
-              {TRUST_INDICATORS.map((label) => (
-                <StaggerItem key={label}>
-                  <div className="flex items-center gap-2">
-                    <CircleCheck
-                      className="text-accent-green h-[18px] w-[18px]"
-                      strokeWidth={1.5}
-                      aria-hidden="true"
-                    />
-                    <span className="font-mono text-sm font-normal text-white/40">
-                      {label}
-                    </span>
-                  </div>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
+          <motion.div
+            variants={heroContainer}
+            className="mb-16 flex w-full flex-wrap items-center justify-center gap-x-10 gap-y-4 px-4"
+          >
+            {TRUST_INDICATORS.map((label) => (
+              <motion.div key={label} variants={heroItem}>
+                <div className="flex items-center gap-2">
+                  <CircleCheck
+                    className="text-accent-green h-[18px] w-[18px]"
+                    strokeWidth={1.5}
+                    aria-hidden="true"
+                  />
+                  <span className="font-mono text-sm font-normal text-white/40">
+                    {label}
+                  </span>
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
 
           <motion.div
