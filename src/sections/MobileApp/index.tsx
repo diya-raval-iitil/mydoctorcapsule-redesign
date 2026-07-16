@@ -79,7 +79,7 @@ function MobileAppSection() {
                 </SectionLabel>
               </SectionBadge>
               <SectionHeading>
-                <h2 className="type-section-title text-white">
+                <h2 className="type-section-title-cta text-white">
                   Your practice,
                   <br />
                   <span className="text-gradient-hero">in your pocket.</span>

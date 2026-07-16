@@ -29,7 +29,7 @@ function FooterComponent() {
         <StaggerItem className="col-span-2 lg:col-span-1">
           <a
             href="/"
-            className="mb-5 inline-block"
+            className="mb-2 inline-block"
             aria-label={`${SITE_NAME} home`}
           >
             <span className="font-display text-xl font-bold tracking-tight">
@@ -37,6 +37,7 @@ function FooterComponent() {
               <span className="text-accent">Capsule</span>
             </span>
           </a>
+          <p className="text-text text-md mb-4">A <span className="font-bold">YAKA</span> Brand</p>
           <p className="text-text-body mb-5 max-w-xs text-sm leading-relaxed">
             {SITE_TAGLINE}
           </p>
