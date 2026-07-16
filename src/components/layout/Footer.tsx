@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { Shield } from 'lucide-react';
+import { Shield, Linkedin } from 'lucide-react';
 import { Section } from '@/components/common/Section';
 import {
   FadeUp,
@@ -41,10 +41,23 @@ function FooterComponent() {
           <p className="text-text-body mb-5 max-w-xs text-sm leading-relaxed">
             {SITE_TAGLINE}
           </p>
-          <div className="text-muted flex items-center gap-2 text-xs">
+          
+          {/* Compliance Info */}
+          <div className="text-muted flex items-center gap-2 text-xs mb-4">
             <Shield className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
             <span>DISHA Compliance + ISO 27001</span>
           </div>
+
+          {/* LinkedIn Link (Filled Icon inside a Rounded Border Container) */}
+          <a
+            href="https://www.linkedin.com/company/mydoctorcapsule/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted border-muted-foreground/20 hover:text-primary hover:border-primary flex h-8 w-8 items-center justify-center rounded-full border transition-colors"
+            aria-label="Follow MyDoctor Capsule on LinkedIn"
+          >
+            <Linkedin className="h-4 w-4 shrink-0 fill-current" aria-hidden="true" />
+          </a>
         </StaggerItem>
 
         {FOOTER_COLUMNS.map((column) => (
