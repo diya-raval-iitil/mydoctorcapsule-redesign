@@ -30,26 +30,31 @@ function AboutSection() {
         <FadeLeft>
           <SectionReveal>
             <SectionBadge>
-              <SectionLabel className="mb-0">Who We Are</SectionLabel>
+              <SectionLabel className="mb-0">About Us</SectionLabel>
             </SectionBadge>
             <SectionHeading>
-              <HighlightHeading highlight="care deeply." className="mb-0">
-                Built by healthcare technologists who
+              <HighlightHeading highlight="healthcare destination." className="mb-0">
+                Your go-to
               </HighlightHeading>
             </SectionHeading>
             <SectionBody className="mb-8 mt-6 max-w-[540px] space-y-5">
               <BodyText>
-                MyDoctorCapsule was born in 2022 from a simple frustration -
-                brilliant doctors with life-changing expertise were invisible
-                online while patients struggled to find them. Our founding team
-                of ex-healthcare executives, digital marketers, and engineers
-                decided to fix that.
+                Finding convenient, reliable, and affordable medical solutions
+                can be challenging. Whether booking appointments or buying
+                medicines, millions of patients still juggle multiple providers
+                to get what they need.
               </BodyText>
               <BodyText>
-                Today we operate in 18 cities, serve 2,400+ clinicians, and
-                have helped facilitate over 180,000 patient appointments.
-                We&apos;re not just a SaaS company - we&apos;re a growth
-                partner embedded in India&apos;s healthcare ecosystem.
+                Founded in 2022, MyDoctorCapsule is your one-stop solution. It
+                helps you book appointments with certified doctors, offers
+                affordable lab tests, and delivers discounted medicines to your
+                doorstep seamlessly, with just a tap.
+              </BodyText>
+              <BodyText>
+                Quality comes first and we ensure 100% genuine and verified
+                services. We operate in 18 cities with 2,400+ registered
+                clinicians, helping 180,000+ individuals take better care of
+                themselves and their loved ones.
               </BodyText>
             </SectionBody>
           </SectionReveal>

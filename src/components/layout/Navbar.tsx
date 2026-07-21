@@ -9,6 +9,7 @@ import {
 } from '@/hooks/useScrollPosition';
 import { cn } from '@/utils/cn';
 import { useIntro } from '@/components/intro';
+import { useComingSoon } from '@/components/common/ComingSoonDialog';
 import {
   drawer,
   motionTransition,
@@ -25,6 +26,7 @@ function NavbarComponent() {
   const isScrolled = useScrollPosition(40);
   const [isOpen, setIsOpen] = useState(false);
   const { enabled, phase, config } = useIntro();
+  const { openComingSoon } = useComingSoon();
 
   const introShift =
     enabled && (phase === 'scrolling' || phase === 'finished');
@@ -108,18 +110,11 @@ function NavbarComponent() {
                   className="flex items-center gap-3"
                   variants={navbarItemVariants}
                 >
-                  <button
-                    type="button"
-                    className={cn('rounded-xl px-4 py-2', navLinkClass)}
-                    aria-label="Sign in"
-                  >
-                    Sign In
-                  </button>
                   <Button
                     variant="primary"
                     size="sm"
-                    href="#cta"
                     ariaLabel="Get started free"
+                    onClick={openComingSoon}
                   >
                     Get Started Free
                   </Button>
@@ -221,23 +216,19 @@ function NavbarComponent() {
                 ))}
               </motion.ul>
               <motion.div
-                className="mt-8 space-y-3 border-t border-white/10 pt-8"
+                className="mt-8 border-t border-white/10 pt-8"
                 variants={staggerItemVariants}
                 initial="hidden"
                 animate="visible"
               >
                 <Button
-                  variant="ghost"
-                  fullWidth
-                  className="!text-white hover:!bg-white/10"
-                >
-                  Sign In
-                </Button>
-                <Button
                   variant="primary"
                   fullWidth
-                  href="#cta"
                   ariaLabel="Get started free"
+                  onClick={() => {
+                    closeMenu();
+                    openComingSoon();
+                  }}
                 >
                   Get Started Free
                 </Button>

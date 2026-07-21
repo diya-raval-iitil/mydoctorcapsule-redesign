@@ -9,25 +9,25 @@ import { cn } from '@/utils/cn';
 const CARDS = [
   {
     id: 'mission',
-    title: 'Our Mission',
+    title: 'Mission',
     description:
-      'To democratize digital healthcare - making world-class patient acquisition and clinical visibility accessible to every doctor in India, not just large hospital chains.',
+      'To make quality healthcare more accessible through comprehensive essential services.',
     icon: Target,
     featured: false,
   },
   {
     id: 'vision',
-    title: 'Our Vision',
+    title: 'Vision',
     description:
-      'A future where every patient finds the right doctor instantly, and every doctor has the tools to build a meaningful, sustainable practice in the digital age.',
+      'Creating a digitally connected healthcare ecosystem where every service is accessible, trusted, and affordable.',
     icon: Eye,
     featured: true,
   },
   {
     id: 'approach',
-    title: 'Our Approach',
+    title: 'Approach',
     description:
-      'We combine deep healthcare domain expertise with modern growth technology - AI, automation, and data - built specifically for the Indian healthcare system.',
+      'We bring expert-led healthcare services together with a seamless digital experience to help you conveniently access doctor consultations, medicines, and lab tests.',
     icon: Lightbulb,
     featured: false,
   },

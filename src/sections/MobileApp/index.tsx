@@ -7,7 +7,6 @@ import {
   MessageSquare,
   RefreshCw,
   Star,
-  Wifi,
 } from 'lucide-react';
 import { FaApple, FaGooglePlay } from 'react-icons/fa';
 import { motion } from 'framer-motion';
@@ -27,6 +26,7 @@ import {
 import { MOBILE_FEATURES } from '@/constants/site';
 import { continuousMotion, ctaHoverMotion, tapMotion } from '@/animations';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
+import { useComingSoon } from '@/components/common/ComingSoonDialog';
 
 const APPOINTMENTS = [
   {
@@ -53,13 +53,13 @@ const featureIcons = {
   bell: Bell,
   message: MessageSquare,
   chart: ChartNoAxesColumn,
-  wifi: Wifi,
   lock: Lock,
   sync: RefreshCw,
 } as const;
 
 function MobileAppSection() {
   const prefersReducedMotion = useReducedMotion();
+  const { openComingSoon } = useComingSoon();
 
   return (
     <Section
@@ -79,41 +79,42 @@ function MobileAppSection() {
                 </SectionLabel>
               </SectionBadge>
               <SectionHeading>
-                <h2 className="type-section-title-cta text-white">
-                  Your practice,
+                <h2 className="type-section-title text-white">
+                  Your health,
                   <br />
                   <span className="text-gradient-hero">in your pocket.</span>
                 </h2>
               </SectionHeading>
               <SectionBody className="mt-6">
                 <p className="font-body max-w-xl text-base leading-relaxed text-white/60">
-                  The MyDoctorCapsule app puts complete practice intelligence on
-                  your phone. Manage appointments, review analytics, respond to
-                  patients, and monitor your online reputation - anywhere,
-                  anytime.
+                  Take the convenience of MyDoctorCapsule wherever you go.
+                  Access healthcare essentials anytime, anywhere with the mobile
+                  app.
                 </p>
               </SectionBody>
               <SectionActions className="mt-10 flex flex-col gap-4 sm:flex-row">
-                <motion.a
-                  href="#"
+                <motion.button
+                  type="button"
                   aria-label="Download on the App Store"
                   className="focus-ring font-body inline-flex items-center justify-center gap-3 rounded-[16px] border border-white/20 bg-white/5 px-6 py-3.5 text-[15px] font-semibold text-white hover:border-white/40 hover:bg-white/10"
                   whileHover={ctaHoverMotion}
                   whileTap={tapMotion}
+                  onClick={openComingSoon}
                 >
                   <FaApple className="h-5 w-5" aria-hidden="true" />
                   App Store
-                </motion.a>
-                <motion.a
-                  href="#"
+                </motion.button>
+                <motion.button
+                  type="button"
                   aria-label="Get it on Google Play"
                   className="focus-ring font-body inline-flex items-center justify-center gap-3 rounded-[16px] border border-white/20 bg-white/5 px-6 py-3.5 text-[15px] font-semibold text-white hover:border-white/40 hover:bg-white/10"
                   whileHover={ctaHoverMotion}
                   whileTap={tapMotion}
+                  onClick={openComingSoon}
                 >
                   <FaGooglePlay className="h-4 w-4" aria-hidden="true" />
                   Google Play
-                </motion.a>
+                </motion.button>
               </SectionActions>
             </SectionReveal>
 

@@ -13,8 +13,10 @@ import {
 } from '@/components/common/MotionWrappers';
 import { CTA_META } from '@/constants/site';
 import { motionTransition } from '@/animations';
+import { useComingSoon } from '@/components/common/ComingSoonDialog';
 
 function CTASection() {
+  const { openComingSoon } = useComingSoon();
   return (
     <Section
       id="cta"
@@ -41,13 +43,13 @@ function CTASection() {
           </SectionBadge>
           <SectionHeading>
             <h2 className="type-section-title-cta text-white">
-              Your next 100 patients are searching right now.
+              Manage Your Health Smarter with MyDoctorCapsule!
             </h2>
           </SectionHeading>
           <SectionBody className="mt-6">
             <p className="font-body text-base leading-relaxed text-white/60">
-              Join 2,400+ doctors who chose MyDoctorCapsule to build a thriving,
-              future-proof practice. 14-day free trial. No credit card required.
+              Join the 180,000+ patients enjoying convenient, affordable
+              healthcare with MyDoctorCapsule.
             </p>
           </SectionBody>
 
@@ -55,22 +57,22 @@ function CTASection() {
             <Button
               variant="primary"
               size="md"
-              href="#"
-              ariaLabel="Start your free trial"
+              href="#features"
+              ariaLabel="Explore all services"
               icon={ArrowRight}
               iconPosition="right"
             >
-              Start Your Free Trial
+              Explore All Services
             </Button>
             <Button
               variant="outline"
               size="md"
-              href="#contact"
-              ariaLabel="Talk to an advisor"
+              ariaLabel="Book a consultation"
               icon={Phone}
               iconPosition="left"
+              onClick={openComingSoon}
             >
-              Talk to an Advisor
+              Book a Consultation
             </Button>
           </SectionActions>
 

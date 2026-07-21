@@ -9,9 +9,11 @@ import { TRUST_INDICATORS } from '@/constants/site';
 import { ArrowRight, Phone } from 'lucide-react';
 import { heroContainer, heroItem } from '@/animations';
 import { useIntro } from '@/components/intro';
+import { useComingSoon } from '@/components/common/ComingSoonDialog';
 
 function HeroSection() {
   const { enabled, config } = useIntro();
+  const { openComingSoon } = useComingSoon();
 
   return (
     <section className="bg-hero-gradient relative min-h-screen overflow-hidden pt-20">
@@ -48,19 +50,19 @@ function HeroSection() {
 
           <motion.div variants={heroItem}>
             <h1 className="type-hero mb-6 max-w-4xl text-white">
-              Grow Your Practice
+              The Only Healthcare Platform
               <br />
               <span className="text-gradient-hero">
-                Digitally. Effortlessly.
+                You&apos;ll Ever Need.
               </span>
             </h1>
           </motion.div>
 
           <motion.div variants={heroItem}>
             <p className="type-body-lg mb-10 max-w-2xl">
-              MyDoctorCapsule is the all-in-one clinical growth platform -
-              patient acquisition, digital visibility, appointment management,
-              and reputation building, unified in one intelligent ecosystem.
+              MyDoctorCapsule is one of India&apos;s trusted healthcare portals
+              with everything — from doctor appointments to medicine delivery —
+              under one roof.
             </p>
           </motion.div>
 
@@ -69,22 +71,22 @@ function HeroSection() {
               <Button
                 variant="primary"
                 size="md"
-                href="#cta"
-                ariaLabel="Start free trial"
+                href="#features"
+                ariaLabel="Explore all services"
                 icon={ArrowRight}
                 iconPosition="right"
               >
-                Start Free Trial
+                Explore All Services
               </Button>
               <Button
                 variant="outline"
                 size="md"
-                href="#workflow"
-                ariaLabel="Book a demo"
+                ariaLabel="Book a consultation"
                 icon={Phone}
                 iconPosition="left"
+                onClick={openComingSoon}
               >
-                Book a Demo
+                Book a Consultation
               </Button>
             </div>
           </motion.div>

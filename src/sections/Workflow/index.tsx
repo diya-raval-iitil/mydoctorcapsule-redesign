@@ -28,8 +28,7 @@ function WorkflowSection() {
         </SectionBadge>
         <SectionHeading>
           <h2 className="type-section-title">
-            From setup to <span className="text-primary">full growth</span> in
-            days.
+            Get Started in <span className="text-primary">3 Simple Steps</span>
           </h2>
         </SectionHeading>
       </SectionReveal>

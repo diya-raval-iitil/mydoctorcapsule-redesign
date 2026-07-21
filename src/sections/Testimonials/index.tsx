@@ -19,7 +19,7 @@ function TestimonialsSection() {
           <SectionLabel className="mb-0">Doctor Stories</SectionLabel>
         </SectionBadge>
         <SectionHeadingReveal>
-          <SectionHeading>Real doctors. Real growth.</SectionHeading>
+          <SectionHeading>Stories that say it all!</SectionHeading>
         </SectionHeadingReveal>
       </SectionReveal>
 

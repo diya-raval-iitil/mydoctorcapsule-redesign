@@ -23,18 +23,17 @@ function FeaturesSection() {
     <Section id="features" background="surface" padding="default">
       <SectionReveal className="mb-16 max-w-4xl text-left">
         <SectionBadge className="mb-4">
-          <SectionLabel className="mb-0">Platform Features</SectionLabel>
+          <SectionLabel className="mb-0">Services</SectionLabel>
         </SectionBadge>
         <SectionHeading>
-          <HighlightHeading highlight="to grow." className="mb-0">
-            Everything your practice needs
+          <HighlightHeading highlight="one service at a time." className="mb-0">
+            Simplifying healthcare,
           </HighlightHeading>
         </SectionHeading>
         <SectionBody className="mt-5 max-w-2xl">
           <BodyText>
-            From your first Google impression to a loyal patient relationship -
-            MyDoctorCapsule covers every touchpoint of the modern patient
-            journey.
+            Healthcare goes beyond visiting a doctor. MyDoctorCapsule helps you
+            manage every step of your healthcare journey.
           </BodyText>
         </SectionBody>
       </SectionReveal>
