@@ -18,11 +18,13 @@ import type { IntroConfig } from './types';
  */
 import brandLogo from '@/assets/logos/yaka_brand.png'; // 👈 CHANGE PER SITE
 import iconLogo from '@/assets/logos/yaka_logo.png'; //  👈 CHANGE PER SITE
+import logo from '@/assets/logos/my_dr_capsule_logo.png';
 
 export const introConfig: IntroConfig = {
   // --- Website-specific assets (edit these) -------------------------------
   brandLogo,
   iconLogo,
+  logo,
 
   // --- Logo sizes (px). Tweak per site only if needed. --------------------
   loaderLogoSize: 110,

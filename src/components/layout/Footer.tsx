@@ -1,12 +1,15 @@
 import { memo } from 'react';
 import { Shield, Linkedin } from 'lucide-react';
 import { Section } from '@/components/common/Section';
+import { motion } from 'framer-motion';
+import { useIntro } from '@/components/intro';
 import {
   FadeUp,
   StaggerContainer,
   StaggerItem,
 } from '@/components/common/MotionWrappers';
 import { FOOTER_LINKS, SITE_NAME, SITE_TAGLINE } from '@/constants/site';
+
 
 const FOOTER_COLUMNS = [
   { title: 'Platform', links: FOOTER_LINKS.platform },
@@ -17,25 +20,28 @@ const FOOTER_COLUMNS = [
 
 function FooterComponent() {
   const currentYear = new Date().getFullYear();
+  const { config } = useIntro();
 
   return (
     <Section
       id="contact"
       background="white"
       padding="default"
-      className="!pt-20 !pb-10"
+      className="!py-10"
     >
       <StaggerContainer className="grid grid-cols-2 gap-x-6 gap-y-10 md:gap-x-10 md:gap-y-12 lg:grid-cols-[1.4fr_repeat(4,1fr)] lg:gap-12">
         <StaggerItem className="col-span-2 lg:col-span-1">
           <a
             href="/"
-            className="mb-2 inline-block"
+            className="mb-2 flex items-center gap-1"
             aria-label={`${SITE_NAME} home`}
           >
-            <span className="font-display text-xl font-bold tracking-tight">
-              <span className="text-text">MyDoctor</span>
-              <span className="text-accent">Capsule</span>
-            </span>
+          <motion.img
+            src={config.logo}
+            alt="logo"
+            className="h-full w-50"
+            // style={{ opacity: brandOpacity }}
+          />
           </a>
           <p className="text-text text-md mb-4">A <span className="font-bold">YAKA</span> Brand</p>
           <p className="text-text-body mb-5 max-w-xs text-sm leading-relaxed">
@@ -62,10 +68,10 @@ function FooterComponent() {
 
         {FOOTER_COLUMNS.map((column) => (
           <StaggerItem key={column.title}>
-            <h3 className="text-muted mb-4 text-[11px] font-bold tracking-[0.12em] uppercase md:mb-5">
+            <h3 className="text-stale-900 mb-2 text-[11px] font-bold tracking-[0.12em] uppercase">
               {column.title}
             </h3>
-            <ul className="space-y-2.5 md:space-y-3" role="list">
+            <ul role="list">
               {column.links.map((link) => (
                 <li key={link.label}>
                   <a
@@ -81,7 +87,7 @@ function FooterComponent() {
         ))}
       </StaggerContainer>
 
-      <FadeUp className="border-border mt-12 flex flex-col items-center justify-between gap-4 border-t pt-8 sm:mt-16 sm:flex-row">
+      <FadeUp className="border-border mt-4 flex flex-col items-center justify-between gap-4 border-t pt-4 sm:flex-row">
         <p className="text-muted text-center text-sm sm:text-left">
           &copy; {currentYear} {SITE_NAME}. All rights reserved.
         </p>
