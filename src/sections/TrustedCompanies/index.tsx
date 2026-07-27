@@ -82,7 +82,7 @@ function TrustedCompaniesSection() {
       </Section>
 
       <FadeUp
-        className="border-primary/10 bg-surface border-b py-16"
+        className="border-primary/10 bg-surface border-b py-8"
         aria-label="Medical specialties"
       >
         <p className="text-muted mb-10 text-center text-xs font-bold tracking-[0.15em] uppercase">

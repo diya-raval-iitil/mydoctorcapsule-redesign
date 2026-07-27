@@ -35,7 +35,7 @@ function HeroSection() {
         />
       )}
 
-      <Container className="relative z-10 flex flex-col items-center pt-16 pb-0 text-center sm:pt-20">
+      <Container className="relative z-10 flex flex-col items-center pt-10 pb-0 text-center">
         <motion.div
           className="flex w-full flex-col items-center"
           variants={heroContainer}

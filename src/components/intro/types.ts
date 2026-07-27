@@ -23,7 +23,7 @@ export interface IntroConfig {
   brandLogo: string;
   /** Icon-only logo. Shown in the navbar at the end. */
   iconLogo: string;
-
+  logo: string;
   /** Rendered size (px) of the logo inside the fullscreen loader. */
   loaderLogoSize: number;
   /** Rendered size (px) of the logo when resting in the hero. */

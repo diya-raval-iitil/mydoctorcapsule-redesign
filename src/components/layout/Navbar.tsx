@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/common/Button';
 import { NAV_LINKS } from '@/constants/navigation';
+
 import {
   useScrollPosition,
   useBodyScrollLock,
@@ -77,14 +78,20 @@ function NavbarComponent() {
             <div className="relative flex h-[72px] items-center justify-between">
               <motion.a
                 href="/"
-                className="relative z-10"
+                className="relative z-10 flex items-center gap-1"
                 aria-label="MyDoctorCapsule home"
                 variants={navbarItemVariants}
               >
-                <span className="font-display text-lg font-bold tracking-tight">
-                  <span className="text-white">MyDoctor</span>
+                <motion.img
+                  src={config.logo}
+                  alt="logo"
+                  className="h-full w-50"
+                  // style={{ opacity: brandOpacity }}
+                />
+                {/* <span className="font-display text-lg font-bold tracking-tight">
+                  <span className="text-white">MyDoctor test</span>
                   <span className="text-accent">Capsule</span>
-                </span>
+                </span> */}
               </motion.a>
 
               <motion.ul
