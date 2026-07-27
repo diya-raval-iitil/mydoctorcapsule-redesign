@@ -75,112 +75,113 @@ function NavbarComponent() {
             isScrolled && 'max-w-[1200px]',
           )}
         >
-            <div className="relative flex h-[72px] items-center justify-between">
-              <motion.a
-                href="/"
-                className="relative z-10 flex items-center gap-1"
-                aria-label="MyDoctorCapsule home"
-                variants={navbarItemVariants}
-              >
-                <motion.img
-                  src={config.logo}
-                  alt="logo"
-                  className="h-full w-50"
-                  // style={{ opacity: brandOpacity }}
-                />
-                {/* <span className="font-display text-lg font-bold tracking-tight">
+          <div className="relative flex h-[72px] items-center justify-between">
+            <motion.a
+              href="/"
+              className="relative z-10 flex items-center gap-1"
+              aria-label="MyDoctorCapsule home"
+              variants={navbarItemVariants}
+            >
+              <motion.img
+                src={config.logo}
+                alt="logo"
+                className="h-full w-50 object-contain"
+                style={{ filter: 'brightness(0) invert(1)' }}
+              // style={{ opacity: brandOpacity }}
+              />
+              {/* <span className="font-display text-lg font-bold tracking-tight">
                   <span className="text-white">MyDoctor test</span>
                   <span className="text-accent">Capsule</span>
                 </span> */}
-              </motion.a>
+            </motion.a>
 
-              <motion.ul
-                className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 lg:flex"
-                role="list"
-                variants={navbarContainerVariants}
-              >
-                {NAV_LINKS.map((link) => (
-                  <motion.li key={link.href} variants={navbarItemVariants}>
-                    <a href={link.href} className={navLinkClass}>
-                      {link.label}
-                    </a>
-                  </motion.li>
-                ))}
-              </motion.ul>
+            <motion.ul
+              className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 lg:flex"
+              role="list"
+              variants={navbarContainerVariants}
+            >
+              {NAV_LINKS.map((link) => (
+                <motion.li key={link.href} variants={navbarItemVariants}>
+                  <a href={link.href} className={navLinkClass}>
+                    {link.label}
+                  </a>
+                </motion.li>
+              ))}
+            </motion.ul>
 
+            <motion.div
+              className="hidden lg:block"
+              animate={{ x: introShift ? -config.navbarShiftX : 0 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+            >
               <motion.div
-                className="hidden lg:block"
-                animate={{ x: introShift ? -config.navbarShiftX : 0 }}
-                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                className="flex items-center gap-3"
+                variants={navbarItemVariants}
               >
-                <motion.div
-                  className="flex items-center gap-3"
-                  variants={navbarItemVariants}
+                <Button
+                  variant="primary"
+                  size="sm"
+                  ariaLabel="Get started free"
+                  onClick={openComingSoon}
                 >
-                  <Button
-                    variant="primary"
-                    size="sm"
-                    ariaLabel="Get started free"
-                    onClick={openComingSoon}
-                  >
-                    Get Started Free
-                  </Button>
-                </motion.div>
+                  Get Started Free
+                </Button>
               </motion.div>
+            </motion.div>
 
-              {enabled && (
-                <div
-                  id={config.navbarAnchorId}
-                  className="pointer-events-none absolute top-1/2 right-0 flex -translate-y-1/2 items-center justify-center"
-                  style={{
-                    width: config.navbarLogoSize,
-                    height: config.navbarLogoSize,
-                  }}
-                  aria-hidden="true"
-                >
-                  <img
-                    src={config.iconLogo}
-                    alt=""
-                    draggable={false}
-                    className="h-full w-full object-contain"
-                    style={{ opacity: showNavIcon ? 1 : 0 }}
-                  />
-                </div>
-              )}
-
-              <button
-                type="button"
-                className="relative flex h-10 w-10 items-center justify-center rounded-xl text-white lg:hidden"
-                onClick={toggleMenu}
-                aria-label={isOpen ? 'Close menu' : 'Open menu'}
-                aria-expanded={isOpen}
+            {enabled && (
+              <div
+                id={config.navbarAnchorId}
+                className="pointer-events-none absolute top-1/2 right-0 flex -translate-y-1/2 items-center justify-center"
+                style={{
+                  width: config.navbarLogoSize,
+                  height: config.navbarLogoSize,
+                }}
+                aria-hidden="true"
               >
-                <motion.span
-                  initial={false}
-                  animate={
-                    isOpen
-                      ? { opacity: 0, rotate: -90, scale: 0.85 }
-                      : { opacity: 1, rotate: 0, scale: 1 }
-                  }
-                  transition={motionTransition.medium}
-                  className="absolute"
-                >
-                  <Menu className="h-6 w-6" />
-                </motion.span>
-                <motion.span
-                  initial={false}
-                  animate={
-                    isOpen
-                      ? { opacity: 1, rotate: 0, scale: 1 }
-                      : { opacity: 0, rotate: 90, scale: 0.85 }
-                  }
-                  transition={motionTransition.medium}
-                  className="absolute"
-                >
-                  <X className="h-6 w-6" />
-                </motion.span>
-              </button>
-            </div>
+                <img
+                  src={config.iconLogo}
+                  alt=""
+                  draggable={false}
+                  className="h-full w-full object-contain"
+                  style={{ opacity: showNavIcon ? 1 : 0 }}
+                />
+              </div>
+            )}
+
+            <button
+              type="button"
+              className="relative flex h-10 w-10 items-center justify-center rounded-xl text-white lg:hidden"
+              onClick={toggleMenu}
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isOpen}
+            >
+              <motion.span
+                initial={false}
+                animate={
+                  isOpen
+                    ? { opacity: 0, rotate: -90, scale: 0.85 }
+                    : { opacity: 1, rotate: 0, scale: 1 }
+                }
+                transition={motionTransition.medium}
+                className="absolute"
+              >
+                <Menu className="h-6 w-6" />
+              </motion.span>
+              <motion.span
+                initial={false}
+                animate={
+                  isOpen
+                    ? { opacity: 1, rotate: 0, scale: 1 }
+                    : { opacity: 0, rotate: 90, scale: 0.85 }
+                }
+                transition={motionTransition.medium}
+                className="absolute"
+              >
+                <X className="h-6 w-6" />
+              </motion.span>
+            </button>
+          </div>
         </motion.nav>
       </motion.header>
 
