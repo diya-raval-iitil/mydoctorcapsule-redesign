@@ -9,6 +9,7 @@ import Workflow from '@/sections/Workflow';
 import MobileApp from '@/sections/MobileApp';
 import Testimonials from '@/sections/Testimonials';
 import CTA from '@/sections/CTA';
+import Contact from '@/sections/Contact';
 import Footer from '@/sections/Footer';
 
 function HomePage() {
@@ -25,6 +26,7 @@ function HomePage() {
         <MobileApp />
         <Testimonials />
         <CTA />
+        <Contact />
         <Footer />
       </main>
     </>

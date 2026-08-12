@@ -24,7 +24,6 @@ function FooterComponent() {
 
   return (
     <Section
-      id="contact"
       background="white"
       padding="default"
       className="!py-10"
