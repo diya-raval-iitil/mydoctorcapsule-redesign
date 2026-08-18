@@ -22,8 +22,8 @@ async function getErrorMessage(response: Response) {
   return errorResponse?.errors?.[0] ?? errorResponse?.message ?? fallbackErrorMessage;
 }
 
-async function request<T>(config: RequestInit) {
-  const response = await fetch(getApiUrl(), {
+async function request<T>(endpoint: string, config: RequestInit) {
+  const response = await fetch(`${getApiUrl()}${endpoint}`, {
     ...config,
     headers: {
       'Content-Type': 'application/json',
@@ -39,8 +39,8 @@ async function request<T>(config: RequestInit) {
 }
 
 export const api = {
-  post<T>(data?: unknown, config?: ApiRequestConfig) {
-    return request<T>({
+  post<T>(endpoint: string, data?: unknown, config?: ApiRequestConfig) {
+    return request<T>(endpoint, {
       ...config,
       method: 'POST',
       body: JSON.stringify(data),

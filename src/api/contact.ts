@@ -10,5 +10,5 @@ export interface ContactPayload {
 const BRAND = 'mydoctorcapsule';
 
 export async function submitContactForm(payload: ContactPayload) {
-  await api.post<void>({ ...payload, brand: BRAND });
+  await api.post<void>('/contact', { ...payload, brand: BRAND });
 }
