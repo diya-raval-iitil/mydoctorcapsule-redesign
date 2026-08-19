@@ -1,16 +1,13 @@
 import { memo, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link, NavLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/common/Button';
 import { NAV_LINKS } from '@/constants/navigation';
 
-import {
-  useScrollPosition,
-  useBodyScrollLock,
-} from '@/hooks/useScrollPosition';
+import { useBodyScrollLock } from '@/hooks/useScrollPosition';
 import { cn } from '@/utils/cn';
 import { useIntro } from '@/components/intro';
-import { useComingSoon } from '@/components/common/ComingSoonDialog';
 import {
   drawer,
   motionTransition,
@@ -20,14 +17,17 @@ import {
   staggerItemVariants,
 } from '@/animations';
 
-const navLinkClass =
-  'font-body text-sm font-medium leading-5 text-white/80 hover:text-white';
+const navLinkClass = (isActive: boolean) =>
+  cn(
+    'font-display text-[15px] leading-5 transition-colors',
+    isActive ? 'font-bold text-white' : 'font-normal text-white/70 hover:text-white',
+  );
+
+const MotionRouterLink = motion(Link);
 
 function NavbarComponent() {
-  const isScrolled = useScrollPosition(40);
   const [isOpen, setIsOpen] = useState(false);
   const { enabled, phase, config } = useIntro();
-  const { openComingSoon } = useComingSoon();
 
   const introShift =
     enabled && (phase === 'scrolling' || phase === 'finished');
@@ -44,40 +44,12 @@ function NavbarComponent() {
         initial="hidden"
         animate="visible"
         variants={navbarContainerVariants}
-        className="fixed top-0 right-0 left-0 z-50 px-[var(--container-px)]"
+        className="fixed top-0 right-0 left-0 z-50 border-b border-white/10 bg-[rgba(9,17,33,0.65)] backdrop-blur-lg"
       >
-        <motion.nav
-          aria-label="Main navigation"
-          animate={{
-            marginTop: isScrolled ? 14 : 0,
-            paddingLeft: isScrolled ? 28 : 0,
-            paddingRight: isScrolled ? 22 : 0,
-            borderRadius: isScrolled ? 9999 : 0,
-            backgroundColor: isScrolled
-              ? 'rgba(9, 17, 33, 0.55)'
-              : 'rgba(9, 17, 33, 0)',
-            boxShadow: isScrolled
-              ? '0 8px 32px rgba(2, 6, 23, 0.28)'
-              : '0 0 0 rgba(0, 0, 0, 0)',
-            borderColor: isScrolled
-              ? 'rgba(255, 255, 255, 0.12)'
-              : 'rgba(255, 255, 255, 0)',
-            backdropFilter: isScrolled ? 'blur(20px)' : 'blur(0px)',
-          }}
-          transition={{ duration: 0.45, ease: 'easeInOut' }}
-          style={{
-            borderWidth: 1,
-            borderStyle: 'solid',
-            WebkitBackdropFilter: isScrolled ? 'blur(20px)' : undefined,
-          }}
-          className={cn(
-            'mx-auto w-full max-w-[var(--container-max)]',
-            isScrolled && 'max-w-[1200px]',
-          )}
-        >
-          <div className="relative flex h-[72px] items-center justify-between">
-            <motion.a
-              href="/"
+        <nav aria-label="Main navigation" className="mx-auto w-full max-w-[var(--container-max)]">
+          <div className="relative flex items-center justify-between px-[var(--container-px)] py-4 lg:px-[60px]">
+            <MotionRouterLink
+              to="/"
               className="relative z-10 flex items-center gap-1"
               aria-label="MyDoctorCapsule home"
               variants={navbarItemVariants}
@@ -87,13 +59,8 @@ function NavbarComponent() {
                 alt="logo"
                 className="h-full w-50 object-contain"
                 style={{ filter: 'brightness(0) invert(1)' }}
-              // style={{ opacity: brandOpacity }}
               />
-              {/* <span className="font-display text-lg font-bold tracking-tight">
-                  <span className="text-white">MyDoctor test</span>
-                  <span className="text-accent">Capsule</span>
-                </span> */}
-            </motion.a>
+            </MotionRouterLink>
 
             <motion.ul
               className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 lg:flex"
@@ -102,9 +69,13 @@ function NavbarComponent() {
             >
               {NAV_LINKS.map((link) => (
                 <motion.li key={link.href} variants={navbarItemVariants}>
-                  <a href={link.href} className={navLinkClass}>
+                  <NavLink
+                    to={link.href}
+                    end={link.href === '/'}
+                    className={({ isActive }) => navLinkClass(isActive)}
+                  >
                     {link.label}
-                  </a>
+                  </NavLink>
                 </motion.li>
               ))}
             </motion.ul>
@@ -121,10 +92,10 @@ function NavbarComponent() {
                 <Button
                   variant="primary"
                   size="sm"
-                  ariaLabel="Get started free"
-                  onClick={openComingSoon}
+                  ariaLabel="Get started"
+                  href="/contact"
                 >
-                  Get Started Free
+                  Get Started
                 </Button>
               </motion.div>
             </motion.div>
@@ -151,7 +122,7 @@ function NavbarComponent() {
 
             <button
               type="button"
-              className="relative flex h-10 w-10 items-center justify-center rounded-xl text-white lg:hidden"
+              className="relative flex h-10 w-10 items-center justify-center rounded-xl text-white lg:hidden mr-4"
               onClick={toggleMenu}
               aria-label={isOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isOpen}
@@ -182,7 +153,7 @@ function NavbarComponent() {
               </motion.span>
             </button>
           </div>
-        </motion.nav>
+        </nav>
       </motion.header>
 
       <AnimatePresence>
@@ -193,7 +164,7 @@ function NavbarComponent() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={motionTransition.medium}
-              className="bg-navy/60 fixed inset-0 top-[72px] z-40 backdrop-blur-sm lg:hidden"
+              className="bg-navy/60 fixed inset-0 top-[96px] z-40 backdrop-blur-sm lg:hidden"
               onClick={closeMenu}
               aria-hidden="true"
             />
@@ -202,7 +173,7 @@ function NavbarComponent() {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="bg-navy fixed top-[72px] right-0 bottom-0 z-50 w-full max-w-sm border-l border-white/10 p-6 lg:hidden"
+              className="bg-navy fixed top-[96px] right-0 bottom-0 z-50 w-full max-w-sm border-l border-white/10 p-6 lg:hidden"
             >
               <motion.ul
                 className="space-y-1"
@@ -213,13 +184,21 @@ function NavbarComponent() {
               >
                 {NAV_LINKS.map((link) => (
                   <motion.li key={link.href} variants={staggerItemVariants}>
-                    <a
-                      href={link.href}
+                    <NavLink
+                      to={link.href}
+                      end={link.href === '/'}
                       onClick={closeMenu}
-                      className="block rounded-xl px-4 py-3 text-base font-medium text-white/90 hover:bg-white/10"
+                      className={({ isActive }) =>
+                        cn(
+                          'font-display block rounded-xl px-4 py-3 text-base',
+                          isActive
+                            ? 'bg-white/10 font-bold text-white'
+                            : 'font-normal text-white/80 hover:bg-white/10',
+                        )
+                      }
                     >
                       {link.label}
-                    </a>
+                    </NavLink>
                   </motion.li>
                 ))}
               </motion.ul>
@@ -232,13 +211,10 @@ function NavbarComponent() {
                 <Button
                   variant="primary"
                   fullWidth
-                  ariaLabel="Get started free"
-                  onClick={() => {
-                    closeMenu();
-                    openComingSoon();
-                  }}
+                  ariaLabel="Get started"
+                  href="/contact"
                 >
-                  Get Started Free
+                  Get Started
                 </Button>
               </motion.div>
             </motion.div>

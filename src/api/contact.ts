@@ -3,7 +3,7 @@ import { api } from '@/lib/api';
 export interface ContactPayload {
   fullName: string;
   email: string;
-  subject: string;
+  serviceInterestedIn: string;
   description: string;
 }
 

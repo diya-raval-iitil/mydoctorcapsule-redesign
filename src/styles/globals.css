@@ -16,20 +16,21 @@
   --color-border: #e2e8f0;
   --color-border-light: rgba(26, 86, 219, 0.12);
 
-  --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-display: 'Jost', system-ui, sans-serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
   --font-mono: 'DM Mono', ui-monospace, SFMono-Regular, monospace;
 
   --radius-card: 18px;
   --radius-card-lg: 24px;
-  --radius-button: 16px;
+  --radius-button: 12px;
+  --radius-panel: 40px;
   --radius-pill: 9999px;
 
   --spacing-section: 40px;
   --spacing-section-md: 40px;
   --spacing-section-sm: 64px;
-  --container-max: 1280px;
-  --content-max: 1180px;
+  --container-max: 1440px;
+  --content-max: 1340px;
   --container-px: 32px;
 
   --shadow-card: 0 20px 60px rgba(15, 23, 42, 0.08);
@@ -76,7 +77,7 @@
     font-size: 16px;
     line-height: 1.625;
     color: var(--color-text-body);
-    background-color: #ffffff;
+    background-color: #010920;
     overflow-x: clip;
   }
 
@@ -87,7 +88,7 @@
   h5,
   h6 {
     font-family: var(--font-display);
-    font-weight: 800;
+    font-weight: 400;
     letter-spacing: -0.02em;
     line-height: 1.15;
     color: var(--color-text);
@@ -217,43 +218,61 @@
   .type-label {
     font-family: var(--font-mono);
     font-size: 13.5px;
-    font-weight: 500;
+    font-weight: 400;
     letter-spacing: 1.35px;
     text-transform: uppercase;
     color: var(--color-primary);
   }
 
+  .type-kicker {
+    font-family: var(--font-display);
+    font-size: clamp(16px, 1.7vw, 24px);
+    font-weight: 500;
+    text-transform: uppercase;
+    line-height: 1.28;
+  }
+
   .type-hero {
     font-family: var(--font-display);
-    font-size: clamp(42px, 5.65vw, 72px);
-    font-weight: 800;
+    font-size: clamp(42px, 5.65vw, 60px);
+    font-weight: 400;
     letter-spacing: -1.8px;
     line-height: 1.08;
+    text-transform: capitalize;
   }
 
   .type-section-title {
     font-family: var(--font-display);
     font-size: clamp(32px, 4vw, 48px);
-    font-weight: 800;
+    font-weight: 500;
     letter-spacing: -0.02em;
     line-height: 1.2;
     color: var(--color-text);
+    text-transform: capitalize;
   }
-  
+
 
    .type-section-title-cta {
     font-family: var(--font-display);
     font-size: clamp(32px, 4vw, 48px);
-    font-weight: 800;
+    font-weight: 400;
     letter-spacing: -0.02em;
     line-height: 1.2;
     color: white;
+    text-transform: capitalize;
   }
   .type-body-lg {
     font-family: var(--font-body);
     font-size: 17px;
     line-height: 1.72;
     color: rgba(255, 255, 255, 0.6);
+  }
+
+  .type-lead {
+    font-family: var(--font-display);
+    font-size: clamp(17px, 1.6vw, 20px);
+    line-height: 1.6;
+    font-weight: 400;
   }
 
   .type-body {

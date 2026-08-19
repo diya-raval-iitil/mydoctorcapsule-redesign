@@ -1,141 +1,145 @@
 import { memo } from 'react';
-import { motion } from 'framer-motion';
-import { CircleCheck } from 'lucide-react';
-import { Badge } from '@/components/common/Badge';
-import { Button } from '@/components/common/Button';
 import { Container } from '@/components/common/Container';
-import { DashboardPreview } from '@/components/ui/DashboardPreview';
-import { TRUST_INDICATORS } from '@/constants/site';
-import { ArrowRight, Phone } from 'lucide-react';
+import { Button } from '@/components/common/Button';
+import { AnimatedCounter } from '@/components/ui/AnimatedCounter';
+import { HERO_HIGHLIGHTS, STATS } from '@/constants/site';
 import { heroContainer, heroItem } from '@/animations';
+import { motion } from 'framer-motion';
 import { useIntro } from '@/components/intro';
-import { useComingSoon } from '@/components/common/ComingSoonDialog';
+import homeHeroBg from '@/assets/images/home_hero_bg.png';
 
 function HeroSection() {
   const { enabled, config } = useIntro();
-  const { openComingSoon } = useComingSoon();
 
   return (
-    <section className="bg-hero-gradient relative min-h-screen overflow-hidden pt-20">
-      <div
-        className="hero-glow top-1/2 left-[-192px] -translate-y-1/2"
-        aria-hidden="true"
-      />
-      <div
-        className="hero-glow right-[-192px] bottom-[-192px]"
-        aria-hidden="true"
-      />
-
-      {enabled && (
-        <div
-          id={config.heroAnchorId}
-          className="pointer-events-none absolute top-28 right-8 z-20 md:right-12"
-          style={{ width: config.heroLogoSize, height: config.heroLogoSize }}
+    <>
+      <section className="relative overflow-hidden md:h-screen h-[80vh] flex items-center">
+        <img
+          src={homeHeroBg}
+          alt=""
           aria-hidden="true"
+          className="absolute top-[10%] inset-0 h-full w-full object-cover"
         />
-      )}
+        {enabled && (
+          <div
+            id={config.heroAnchorId}
+            className="pointer-events-none absolute top-28 right-8 z-20 md:right-12"
+            style={{ width: config.heroLogoSize, height: config.heroLogoSize }}
+            aria-hidden="true"
+          />
+        )}
 
-      <Container className="relative z-10 flex flex-col items-center pt-10 pb-0 text-center">
-        <motion.div
-          className="flex w-full flex-col items-center"
-          variants={heroContainer}
-          initial="hidden"
-          animate="visible"
-        >
-          <motion.div variants={heroItem}>
-            <Badge className="mb-8">
-              Trusted by 2,400+ healthcare providers across India
-            </Badge>
-          </motion.div>
-
-          <motion.div variants={heroItem}>
-            <h1 className="type-hero mb-6 max-w-4xl text-white">
-              The Only Healthcare Platform
-              <br />
-              <span className="text-gradient-hero">
-                You&apos;ll Ever Need.
+        <Container className="relative z-10">
+          <motion.div variants={heroContainer} initial="hidden" animate="visible">
+            <motion.div
+              variants={heroItem}
+              className="mb-8 flex flex-wrap items-center gap-4"
+            >
+              <p className="type-kicker !text-[#FFFFFF] !font-normal">Healthcare that fits your life</p>
+              <span className="bg-primary font-body rounded-[var(--radius-button)] px-5 py-2.5 text-sm font-medium text-white">
+                Your Healthcare, All In One Place
               </span>
-            </h1>
-          </motion.div>
+            </motion.div>
 
-          <motion.div variants={heroItem}>
-            <p className="type-body-lg mb-10 max-w-2xl">
-              MyDoctorCapsule is one of India&apos;s trusted healthcare portals
-              with everything — from doctor appointments to medicine delivery —
-              under one roof.
-            </p>
-          </motion.div>
+            <motion.h1
+              variants={heroItem}
+              className="type-hero mb-10 lg:max-w-3xl text-white"
+            >
+              Healthcare Designed Around Your Daily Needs
+            </motion.h1>
 
-          <motion.div variants={heroItem}>
-            <div className="mb-12 flex w-full max-w-md flex-col gap-4 sm:max-w-none sm:flex-row sm:justify-center">
+            <motion.div variants={heroItem} className="flex flex-wrap gap-4">
               <Button
                 variant="primary"
-                size="md"
-                href="#features"
-                ariaLabel="Explore all services"
-                icon={ArrowRight}
-                iconPosition="right"
+                size="sm"
+                href="/services"
+                ariaLabel="Explore the platform"
               >
-                Explore All Services
+                Explore the platform
               </Button>
               <Button
                 variant="outline"
-                size="md"
-                ariaLabel="Book a consultation"
-                icon={Phone}
-                iconPosition="left"
-                onClick={openComingSoon}
+                size="sm"
+                href="/contact"
+                ariaLabel="Request a demo"
               >
-                Book a Consultation
+                Request a demo
               </Button>
-            </div>
+            </motion.div>
           </motion.div>
+        </Container>
+      </section>
+      <section className="relative bg-cover bg-center bg-[#010920] lg:py-32 py-20">
+        <Container className="relative z-10">
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+            <motion.div
+              variants={heroItem}
+            >
+              <video
+                src="/home_hero_video.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="aspect-[4/3] w-full object-cover rounded-xl lg:sticky lg:top-28"
+                aria-label="MyDoctorCapsule platform walkthrough"
+              />
+            </motion.div>
 
-          <motion.div
-            variants={heroContainer}
-            className="mb-16 flex w-full flex-wrap items-center justify-center gap-x-10 gap-y-4 px-4"
-          >
-            {TRUST_INDICATORS.map((label) => (
-              <motion.div key={label} variants={heroItem}>
-                <div className="flex items-center gap-2">
-                  <CircleCheck
-                    className="text-accent-green h-[18px] w-[18px]"
-                    strokeWidth={1.5}
-                    aria-hidden="true"
-                  />
-                  <span className="font-mono text-sm font-normal text-white/40">
-                    {label}
-                  </span>
+            <div className="flex flex-col gap-16">
+              <motion.div variants={heroItem} className="flex flex-col gap-10">
+                <p className="type-lead max-w-xl text-white">
+                  Bring essential healthcare services together in one convenient
+                  digital experience — from finding the right specialist to
+                  managing health records, prescriptions and lab reports, all
+                  from your phone.
+                </p>
+
+                <div className="grid grid-cols-1 gap-px overflow-hidden rounded-[var(--radius-card-lg)] border border-white/10 sm:grid-cols-3">
+                  {HERO_HIGHLIGHTS.map((highlight) => (
+                    <div
+                      key={highlight.title}
+                      className="flex flex-col gap-3 bg-white/[0.03] p-6"
+                    >
+                      <p className="font-display text-base font-medium text-white">
+                        {highlight.title}
+                      </p>
+                      <p className="font-body text-sm text-white/70">
+                        {highlight.description}
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </motion.div>
-            ))}
-          </motion.div>
 
-          <motion.div
-            variants={heroItem}
-            className="w-full max-w-[760px] px-2 md:max-w-[860px] lg:max-w-[960px]"
-          >
-            <DashboardPreview />
-          </motion.div>
-        </motion.div>
-      </Container>
+              <motion.div variants={heroItem} className="flex flex-col gap-8">
+                <p className="font-display text-2xl text-white">My Dr. Capsule in numbers</p>
+                <div className="grid grid-cols-2 gap-px overflow-hidden rounded-[var(--radius-card-lg)] border border-white/10">
+                  {STATS.map((stat) => (
+                    <div
+                      key={stat.label}
+                      className="flex flex-col items-center gap-3 bg-white/[0.03] px-6 py-10 text-center"
+                    >
+                      <p className="font-display text-4xl font-normal text-white">
+                        <AnimatedCounter
+                          value={stat.value}
+                          suffix={stat.suffix}
+                          decimals={'decimals' in stat ? stat.decimals : 0}
+                        />
+                      </p>
+                      <p className="font-body text-base text-white/80">
+                        {stat.label}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </Container>
+      </section>
+    </>
 
-      <div className="relative mt-12 -mb-px h-[90px] w-full">
-        <svg
-          viewBox="0 0 1440 90"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="absolute bottom-0 left-0 h-full w-full"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          <path
-            d="M0,50 C180,35 240,35 360,50 C480,65 600,65 720,50 C840,35 960,35 1080,50 C1200,65 1260,65 1440,50 L1440,90 L0,90 Z"
-            fill="#FFFFFF"
-          />
-        </svg>
-      </div>
-    </section>
   );
 }
 

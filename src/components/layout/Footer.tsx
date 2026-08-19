@@ -1,7 +1,6 @@
 import { memo } from 'react';
-import { Shield, Linkedin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Section } from '@/components/common/Section';
-import { motion } from 'framer-motion';
 import { useIntro } from '@/components/intro';
 import {
   FadeUp,
@@ -10,13 +9,14 @@ import {
 } from '@/components/common/MotionWrappers';
 import { FOOTER_LINKS, SITE_NAME, SITE_TAGLINE } from '@/constants/site';
 
-
 const FOOTER_COLUMNS = [
-  { title: 'Platform', links: FOOTER_LINKS.platform },
-  { title: 'Specialties', links: FOOTER_LINKS.specialties },
   { title: 'Company', links: FOOTER_LINKS.company },
   { title: 'Legal', links: FOOTER_LINKS.legal },
 ] as const;
+
+function isInternalLink(href: string) {
+  return href.startsWith('/');
+}
 
 function FooterComponent() {
   const currentYear = new Date().getFullYear();
@@ -24,61 +24,54 @@ function FooterComponent() {
 
   return (
     <Section
-      background="white"
-      padding="default"
-      className="!py-10"
+      background="transparent"
+      padding="none"
+      fullWidth
+      className="bg-navy rounded-t-[var(--radius-panel)] px-[var(--container-px)] py-14 lg:px-[120px] lg:py-[60px]"
     >
-      <StaggerContainer className="grid grid-cols-2 gap-x-6 gap-y-10 md:gap-x-10 md:gap-y-12 lg:grid-cols-[1.4fr_repeat(4,1fr)] lg:gap-12">
-        <StaggerItem className="col-span-2 lg:col-span-1">
-          <a
-            href="/"
-            className="mb-2 flex items-center gap-1"
+      <StaggerContainer className="grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-[1.6fr_1fr_1fr] lg:gap-x-16">
+        <StaggerItem>
+          <Link
+            to="/"
+            className="mb-5 inline-flex items-center gap-1"
             aria-label={`${SITE_NAME} home`}
           >
-          <motion.img
-            src={config.logo}
-            alt="logo"
-            className="h-full w-50"
-            // style={{ opacity: brandOpacity }}
-          />
-          </a>
-          <p className="text-text text-md mb-4">A <span className="font-bold">YAKA</span> Brand</p>
-          <p className="text-text-body mb-5 max-w-xs text-sm leading-relaxed">
+            <img
+              src={config.logo}
+              alt="logo"
+              className="h-[31px] w-auto object-contain"
+              style={{ filter: 'brightness(0) invert(1)' }}
+            />
+          </Link>
+          <p className="font-display mb-3 text-base text-white">A YAKA Brand</p>
+          <p className="font-display max-w-md text-base leading-[1.6] text-white/70">
             {SITE_TAGLINE}
           </p>
-          
-          {/* Compliance Info */}
-          <div className="text-muted flex items-center gap-2 text-xs mb-4">
-            <Shield className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-            <span>DISHA Compliance + ISO 27001</span>
-          </div>
-
-          {/* LinkedIn Link (Filled Icon inside a Rounded Border Container) */}
-          <a
-            href="https://www.linkedin.com/company/mydoctorcapsule/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted border-muted-foreground/20 hover:text-primary hover:border-primary flex h-8 w-8 items-center justify-center rounded-full border transition-colors"
-            aria-label="Follow MyDoctor Capsule on LinkedIn"
-          >
-            <Linkedin className="h-4 w-4 shrink-0 fill-current" aria-hidden="true" />
-          </a>
         </StaggerItem>
 
         {FOOTER_COLUMNS.map((column) => (
           <StaggerItem key={column.title}>
-            <h3 className="text-stale-900 mb-2 text-[11px] font-bold tracking-[0.12em] uppercase">
+            <h3 className="font-body mb-5 text-sm font-bold tracking-[0.1em] text-white uppercase">
               {column.title}
             </h3>
-            <ul role="list">
+            <ul role="list" className="space-y-3">
               {column.links.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="text-text-body hover:text-primary text-sm"
-                  >
-                    {link.label}
-                  </a>
+                  {isInternalLink(link.href) ? (
+                    <Link
+                      to={link.href}
+                      className="font-body text-sm text-white/80 hover:text-white"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={link.href}
+                      className="font-body text-sm text-white/80 hover:text-white"
+                    >
+                      {link.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
@@ -86,12 +79,12 @@ function FooterComponent() {
         ))}
       </StaggerContainer>
 
-      <FadeUp className="border-border mt-4 flex flex-col items-center justify-between gap-4 border-t pt-4 sm:flex-row">
-        <p className="text-muted text-center text-sm sm:text-left">
+      <FadeUp className="mt-6 flex flex-col items-center justify-between gap-3  border-white/10 pt-6 sm:flex-row">
+        <p className="font-body text-center text-sm text-white/60 sm:text-left">
           &copy; {currentYear} {SITE_NAME}. All rights reserved.
         </p>
-        <p className="text-muted text-center text-sm sm:text-right">
-          Made with care for India&apos;s healthcare.
+        <p className="font-body text-center text-sm text-white/60 sm:text-right">
+          Privacy &middot; Terms
         </p>
       </FadeUp>
     </Section>

@@ -28,7 +28,7 @@ type ContactTextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
 const initialFormValues: ContactPayload = {
   fullName: '',
   email: '',
-  subject: '',
+  serviceInterestedIn: '',
   description: '',
 };
 
@@ -209,10 +209,10 @@ function ContactForm() {
           required
         />
         <ContactField
-          label="Subject"
-          name="subject"
-          value={values.subject}
-          onChange={handleFieldChange('subject')}
+          label="What do you need help with?"
+          name="serviceInterestedIn"
+          value={values.serviceInterestedIn}
+          onChange={handleFieldChange('serviceInterestedIn')}
           placeholder="How can we help?"
           required
         />
