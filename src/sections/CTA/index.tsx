@@ -67,12 +67,12 @@ function CTASection() {
             <Button
               variant="outline"
               size="sm"
-              ariaLabel="Book a consultation"
+              ariaLabel="Book a consulations"
               icon={Phone}
               iconPosition="left"
               onClick={openComingSoon}
             >
-              Book a Consultation
+              Book a consulations
             </Button>
           </SectionActions>
 

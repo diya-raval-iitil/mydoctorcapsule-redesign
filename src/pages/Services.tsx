@@ -20,7 +20,7 @@ function ServicesPage() {
           title="Healthcare solutions designed around you."
           primaryLabel="Explore Services"
           primaryHref="#platform"
-          secondaryLabel="Book a consultation"
+          secondaryLabel="Book a consulations"
           secondaryHref="/contact"
         />
         <FeatureGrid

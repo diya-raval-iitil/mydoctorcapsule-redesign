@@ -10,16 +10,16 @@ function CtaBannerComponent() {
           <h3 className="type-section-title max-w-lg !text-[clamp(28px,3.4vw,40px)]">
             Manage Your Health Smarter with MyDoctorCapsule!
           </h3>
-          <p className="type-body max-w-md">
-            Book consultations, order medicines, and track your records — all from one place.
+          <p className="type-body max-w-xl">
+            Explain that the complete property platform is coming soon.
           </p>
         </div>
         <div className="flex flex-wrap gap-4">
           <Button variant="primary" size="sm" href="/services" ariaLabel="Explore all services">
             Explore all services
           </Button>
-          <Button variant="secondary" size="sm" href="/contact" ariaLabel="Book a consultation">
-            Book a consultation
+          <Button variant="secondary" size="sm" href="/contact" ariaLabel="Book a consulations">
+            Book a consulations
           </Button>
         </div>
       </div>

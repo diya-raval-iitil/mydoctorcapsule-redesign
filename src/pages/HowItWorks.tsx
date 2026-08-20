@@ -19,7 +19,7 @@ function HowItWorksPage() {
           title="Healthcare shouldn't feel complicated."
           primaryLabel="Explore Services"
           primaryHref="/services"
-          secondaryLabel="Book a consultation"
+          secondaryLabel="Book a consulations"
           secondaryHref="/contact"
         />
         <HowItWorksSteps />

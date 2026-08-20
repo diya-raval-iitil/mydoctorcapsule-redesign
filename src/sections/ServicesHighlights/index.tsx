@@ -17,9 +17,9 @@ function ServicesHighlightsSection() {
       <div className="mx-auto grid w-full max-w-[var(--container-max)] items-center gap-14 px-[var(--container-px)] lg:grid-cols-2 lg:gap-20">
         <FadeLeft className="flex flex-col gap-10">
           <div className="flex flex-col gap-6">
-            <p className="type-kicker !text-[#FFFFFF]">Why My Doctor Capsule</p>
-            <h2 className="type-section-title max-w-xl !text-white">
-              Built around trust, simplicity and access.
+            <p className="type-kicker !text-[#FFFFFF]">About My Doctor Capsule</p>
+            <h2 className="type-section-title !text-white">
+              Making healthcare simpler, more connected & accessible.
             </h2>
             <p className="font-body max-w-xl text-lg text-white/70">
               We bring healthcare services, professionals and technology together to
