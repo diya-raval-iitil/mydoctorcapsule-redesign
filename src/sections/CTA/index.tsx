@@ -56,7 +56,7 @@ function CTASection() {
           <SectionActions className="mt-10 mb-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button
               variant="primary"
-              size="md"
+              size="sm"
               href="#features"
               ariaLabel="Explore all services"
               icon={ArrowRight}
@@ -66,13 +66,13 @@ function CTASection() {
             </Button>
             <Button
               variant="outline"
-              size="md"
-              ariaLabel="Book a consultation"
+              size="sm"
+              ariaLabel="Book a consulations"
               icon={Phone}
               iconPosition="left"
               onClick={openComingSoon}
             >
-              Book a Consultation
+              Book a consulations
             </Button>
           </SectionActions>
 

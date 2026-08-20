@@ -79,7 +79,7 @@ function MobileAppSection() {
                 </SectionLabel>
               </SectionBadge>
               <SectionHeading>
-                <h2 className="type-section-title text-white">
+                <h2 className="type-section-title !text-white">
                   Your health,
                   <br />
                   <span className="text-gradient-hero">in your pocket.</span>
@@ -208,11 +208,10 @@ function MobileAppSection() {
                             </p>
                           </div>
                           <span
-                            className={`rounded-full px-2 py-0.5 text-[9px] font-bold lowercase ${
-                              appt.status === 'confirmed'
+                            className={`rounded-full px-2 py-0.5 text-[9px] font-bold lowercase ${appt.status === 'confirmed'
                                 ? 'bg-emerald-50 text-emerald-600'
                                 : 'bg-amber-50 text-amber-600'
-                            }`}
+                              }`}
                           >
                             {appt.status}
                           </span>
