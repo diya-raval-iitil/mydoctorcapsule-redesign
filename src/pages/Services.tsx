@@ -36,7 +36,7 @@ function ServicesPage() {
           background="white"
           padding="none"
           fullWidth
-          className="rounded-[var(--radius-panel)] py-24 lg:py-28"
+          className="py-24 lg:py-28"
         >
           <div className="mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)]">
             <CtaBanner />

@@ -21,7 +21,7 @@ function AboutProblemVisionSection() {
       background="white"
       padding="none"
       fullWidth
-      className="border-primary rounded-[var(--radius-panel)] border-t-8 py-24 lg:py-28"
+      className="border-primary border-t-8 py-24 lg:py-28"
     >
       <div className="mx-auto flex w-full max-w-[var(--container-max)] flex-col gap-28 px-[var(--container-px)]">
         {/* The Problem */}

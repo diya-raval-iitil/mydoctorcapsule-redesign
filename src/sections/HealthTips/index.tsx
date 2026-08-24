@@ -18,7 +18,7 @@ function HealthTipsSection() {
       background="white"
       padding="none"
       fullWidth
-      className="rounded-[var(--radius-panel)] py-24 lg:py-28"
+      className="py-24 lg:py-28"
     >
       <div className="mx-auto flex w-full max-w-[var(--container-max)] flex-col gap-16 px-[var(--container-px)]">
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">

@@ -15,7 +15,7 @@ function ServicesPlatformSection() {
       background="white"
       padding="none"
       fullWidth
-      className="rounded-[var(--radius-panel)] py-24 lg:py-28"
+      className="py-24 lg:py-28"
     >
       <div className="mx-auto flex w-full max-w-[var(--container-max)] flex-col gap-14 px-[var(--container-px)]">
         <FadeLeft className="flex flex-col gap-6">
