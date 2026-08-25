@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Section } from '@/components/common/Section';
 import { useIntro } from '@/components/intro';
 import {
-  FadeUp,
   StaggerContainer,
   StaggerItem,
 } from '@/components/common/MotionWrappers';

@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import { Container } from '@/components/common/Container';
 import { Button } from '@/components/common/Button';
 import { AnimatedCounter } from '@/components/ui/AnimatedCounter';
@@ -6,36 +6,101 @@ import { HERO_HIGHLIGHTS, STATS } from '@/constants/site';
 import { heroContainer, heroItem } from '@/animations';
 import { motion } from 'framer-motion';
 import { useIntro } from '@/components/intro';
-import homeHeroBg from '@/assets/images/home_hero_bg.png';
 
 function HeroSection() {
   const { enabled, config } = useIntro();
+  const [videoMounted, setVideoMounted] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Mount video client-side to prevent SSR hydration autoplay blocks
+  useEffect(() => {
+    setVideoMounted(true);
+  }, []);
+
+  // Enforce muted state and auto-play fallbacks for mobile browsers
+  useEffect(() => {
+    if (!videoMounted) return;
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.muted = true;
+    video.defaultMuted = true;
+
+    const playVideo = () => {
+      video.play().catch(() => {});
+    };
+
+    playVideo();
+
+    video.addEventListener('loadedmetadata', playVideo);
+    video.addEventListener('canplay', playVideo);
+    document.addEventListener('touchstart', playVideo, {
+      once: true,
+      passive: true,
+    });
+    document.addEventListener('scroll', playVideo, {
+      once: true,
+      passive: true,
+    });
+    document.addEventListener('click', playVideo, { once: true });
+
+    return () => {
+      video.removeEventListener('loadedmetadata', playVideo);
+      video.removeEventListener('canplay', playVideo);
+      document.removeEventListener('touchstart', playVideo);
+      document.removeEventListener('scroll', playVideo);
+      document.removeEventListener('click', playVideo);
+    };
+  }, [videoMounted]);
 
   return (
     <>
-      <section className="relative overflow-hidden md:h-screen h-[80vh] flex items-center">
-        <img
-          src={homeHeroBg}
-          alt=""
+      <section className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-black pt-[180px] pb-24 lg:pt-[220px] lg:pb-32">
+        {/* Background Video */}
+        {videoMounted && (
+          <video
+            ref={videoRef}
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-center"
+            autoPlay
+            muted
+            loop
+            playsInline
+            webkit-playsinline="true"
+          >
+            <source src="/hero_bg_video.mp4" type="video/mp4" />
+          </video>
+        )}
+
+        {/* Optional overlay to adjust text contrast */}
+        <div
           aria-hidden="true"
-          className="absolute top-[10%] inset-0 h-full w-full object-cover"
+          className="pointer-events-none absolute inset-0 z-[1] bg-black/30"
         />
+
         {enabled && (
           <div
             id={config.heroAnchorId}
-            className="pointer-events-none absolute top-28 right-8 z-20 md:right-12"
+            className="pointer-events-none absolute top-20 right-8 z-20 md:right-12"
             style={{ width: config.heroLogoSize, height: config.heroLogoSize }}
             aria-hidden="true"
           />
         )}
 
         <Container className="relative z-10">
-          <motion.div variants={heroContainer} initial="hidden" animate="visible">
+          <motion.div
+            variants={heroContainer}
+            initial="hidden"
+            animate="visible"
+            className="flex flex-col gap-8"
+          >
             <motion.div
               variants={heroItem}
-              className="mb-8 flex flex-wrap items-center gap-4"
+              className="flex flex-wrap items-center gap-4"
             >
-              <p className="type-kicker !text-[#FFFFFF] !font-normal">Healthcare that fits your life</p>
+              <p className="type-kicker !font-normal !text-[#FFFFFF]">
+                Healthcare that fits your life
+              </p>
               <span className="bg-primary font-body rounded-[var(--radius-button)] px-5 py-2.5 text-sm font-medium text-white">
                 Your Healthcare, All In One Place
               </span>
@@ -43,7 +108,7 @@ function HeroSection() {
 
             <motion.h1
               variants={heroItem}
-              className="type-hero mb-10 lg:max-w-3xl text-white"
+              className="type-hero max-w-4xl text-white"
             >
               Healthcare Designed Around Your Daily Needs
             </motion.h1>
@@ -69,19 +134,18 @@ function HeroSection() {
           </motion.div>
         </Container>
       </section>
-      <section className="relative bg-cover bg-center bg-[#010920] lg:py-32 py-20">
+
+      <section className="relative bg-[#010920] bg-cover bg-center py-20 lg:py-32">
         <Container className="relative z-10">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-            <motion.div
-              variants={heroItem}
-            >
+            <motion.div variants={heroItem}>
               <video
                 src="/home_hero_video.mp4"
                 autoPlay
                 loop
                 muted
                 playsInline
-                className="aspect-[4/3] w-full object-cover rounded-xl lg:sticky lg:top-28"
+                className="aspect-[4/3] w-full rounded-xl object-cover lg:sticky lg:top-28"
                 aria-label="MyDoctorCapsule platform walkthrough"
               />
             </motion.div>
@@ -113,7 +177,9 @@ function HeroSection() {
               </motion.div>
 
               <motion.div variants={heroItem} className="flex flex-col gap-8">
-                <p className="font-display text-2xl text-white">My Dr. Capsule in numbers</p>
+                <p className="font-display text-2xl text-white">
+                  My Dr. Capsule in numbers
+                </p>
                 <div className="grid grid-cols-2 gap-px overflow-hidden rounded-[var(--radius-card-lg)] border border-white/10">
                   {STATS.map((stat) => (
                     <div
@@ -139,7 +205,6 @@ function HeroSection() {
         </Container>
       </section>
     </>
-
   );
 }
 
