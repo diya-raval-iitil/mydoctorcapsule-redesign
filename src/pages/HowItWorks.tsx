@@ -7,8 +7,10 @@ import { CtaBanner } from '@/components/common/CtaBanner';
 import { StepList } from '@/components/common/StepList';
 import HowItWorksSteps from '@/sections/HowItWorksSteps';
 import { JOURNEY_STEPS } from '@/constants/site';
+import { useTheme } from '@/context/ThemeContext';
 
 function HowItWorksPage() {
+  const { isDark } = useTheme();
   return (
     <>
       <Navbar />
@@ -31,7 +33,7 @@ function HowItWorksPage() {
           steps={JOURNEY_STEPS}
         />
         <Section
-          background="white"
+          background={isDark ? 'surface' : 'white'}
           padding="none"
           fullWidth
           className="py-24 lg:py-28"

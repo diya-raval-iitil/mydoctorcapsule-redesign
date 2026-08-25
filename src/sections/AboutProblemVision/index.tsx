@@ -12,13 +12,21 @@ import statIconProviders from '@/assets/images/stat-icon-providers.png';
 import statIconAppointments from '@/assets/images/stat-icon-appointments.png';
 import statIconRating from '@/assets/images/stat-icon-rating.png';
 import statIconGrowth from '@/assets/images/stat-icon-growth.png';
+import { useTheme } from '@/context/ThemeContext';
+import { cn } from '@/utils/cn';
 
-const STAT_ICONS = [statIconProviders, statIconAppointments, statIconRating, statIconGrowth];
+const STAT_ICONS = [
+  statIconProviders,
+  statIconAppointments,
+  statIconRating,
+  statIconGrowth,
+];
 
 function AboutProblemVisionSection() {
+  const { isDark } = useTheme();
   return (
     <Section
-      background="white"
+      background={isDark ? 'surface' : 'white'}
       padding="none"
       fullWidth
       className="border-primary border-t-8 py-24 lg:py-28"
@@ -32,8 +40,8 @@ function AboutProblemVisionSection() {
               Healthcare shouldn&apos;t feel fragmented.
             </h2>
             <p className="type-body max-w-xl">
-              Finding a doctor, booking an appointment, arranging diagnostic tests or
-              getting medicines can often mean using multiple services.
+              Finding a doctor, booking an appointment, arranging diagnostic
+              tests or getting medicines can often mean using multiple services.
             </p>
             <p className="type-body max-w-xl">
               My Doctor Capsule brings these essential healthcare needs together
@@ -60,28 +68,49 @@ function AboutProblemVisionSection() {
               One connected ecosystem for better healthcare access.
             </h2>
             <p className="type-body max-w-2xl">
-              We aim to make everyday healthcare more convenient by connecting people
-              with the services and professionals they need all from a single,
-              trusted platform.
+              We aim to make everyday healthcare more convenient by connecting
+              people with the services and professionals they need all from a
+              single, trusted platform.
             </p>
           </FadeLeft>
 
           <StaggerContainer className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {STATS.map((stat, index) => (
               <StaggerItem key={stat.label}>
-                <div className="border-border card-hover flex h-full flex-col items-center gap-4 rounded-[var(--radius-card-lg)] border bg-white p-8 text-center">
+                <div
+                  className={cn(
+                    'card-hover flex h-full flex-col items-center gap-4 rounded-[var(--radius-card-lg)] border p-8 text-center transition-colors duration-300',
+                    isDark
+                      ? 'border-white/10 bg-slate-900/60'
+                      : 'border-border bg-white',
+                  )}
+                >
                   <img
                     src={STAT_ICONS[index]}
                     alt=""
                     aria-hidden="true"
                     className="h-[80px] w-[80px] object-contain"
                   />
+
                   <div className="flex flex-col gap-1">
-                    <p className="font-display text-text text-[34px] font-medium">
+                    <p
+                      className={cn(
+                        'font-display text-[34px] font-medium',
+                        isDark ? 'text-white' : 'text-text',
+                      )}
+                    >
                       {stat.value.toLocaleString()}
                       {stat.suffix}
                     </p>
-                    <p className="type-body text-sm">{stat.label}</p>
+
+                    <p
+                      className={cn(
+                        'type-body text-sm',
+                        isDark ? 'text-white/70' : 'text-text-body',
+                      )}
+                    >
+                      {stat.label}
+                    </p>
                   </div>
                 </div>
               </StaggerItem>

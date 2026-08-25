@@ -12,11 +12,7 @@
  * finished -> intro complete, floating logo unmounted, navbar shows icon
  */
 export type IntroPhase =
-  | 'loading'
-  | 'flying'
-  | 'hero'
-  | 'scrolling'
-  | 'finished';
+  'loading' | 'flying' | 'hero' | 'scrolling' | 'finished';
 
 export interface IntroConfig {
   /** Full brand logo (icon + wordmark). Shown in loader + hero. */
@@ -71,4 +67,42 @@ export interface IntroContextValue {
   goToHero: () => void;
   goToScrolling: () => void;
   finishIntro: () => void;
+}
+
+export interface ArticleSubsection {
+  number?: string;
+  heading: string;
+  body?: string | string[];
+}
+
+export interface ArticleSection {
+  heading: string;
+  body?: string | string[];
+  subsections?: ArticleSubsection[];
+  bulletsIntro?: string;
+  bullets?: string[];
+  bulletsOutro?: string;
+  sectionHighlight?: string;
+}
+
+export interface ArticleContent {
+  intro: string[];
+  highlight: string;
+  sections: ArticleSection[];
+}
+
+export interface HealthArticle {
+  slug: number;
+  id: string;
+  tag: string;
+  tagBg: string;
+  tagText: string;
+  readTime: string;
+  title: string;
+  excerpt: string;
+  author: string;
+  authorPhoto: string;
+  date: string;
+  image: string;
+  content: ArticleContent;
 }

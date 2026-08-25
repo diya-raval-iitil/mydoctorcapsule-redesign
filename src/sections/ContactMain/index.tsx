@@ -1,10 +1,17 @@
-import { memo, useEffect, useState, type ChangeEvent, type FormEvent } from 'react';
+import {
+  memo,
+  useEffect,
+  useState,
+  type ChangeEvent,
+  type FormEvent,
+} from 'react';
 import { CheckCircle2, ChevronDown, LoaderCircle, XCircle } from 'lucide-react';
 import { Container } from '@/components/common/Container';
 import { FadeLeft, FadeRight } from '@/components/common/MotionWrappers';
 import { CONTACT_HELP_TOPICS } from '@/constants/site';
 import { submitContactForm, type ContactPayload } from '@/api/contact';
 import { useIntro } from '@/components/intro';
+import { useTheme } from '@/context/ThemeContext';
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
 
@@ -19,8 +26,8 @@ const initialValues: ContactPayload = {
   description: '',
 };
 
-const successMessage = 'Request Submitted Successfully.';
-// const fallbackErrorMessage = 'We could not send your message right now. Please try again shortly.';
+const fallbackErrorMessage =
+  'We could not send your message right now. Please try again shortly.';
 
 function useContactForm() {
   const [values, setValues] = useState<ContactPayload>(initialValues);
@@ -51,24 +58,14 @@ function useContactForm() {
     setStatus('submitting');
     setMessage('');
 
-    // try {
-    //   await submitContactForm(values);
-    //   setValues(initialValues);
-    //   setStatus('success');
-    //   setMessage(successMessage);
-    // } 
-    // catch (error) {
-    //   setStatus('error');
-    //   setMessage(error instanceof Error ? error.message : fallbackErrorMessage);
-    // }
     try {
-      await submitContactForm(values);
-    } catch {
-      // Ignore API errors and proceed directly to success state
-    } finally {
+      const response = await submitContactForm(values);
       setValues(initialValues);
       setStatus('success');
-      setMessage(successMessage);
+      setMessage(response.message);
+    } catch (error) {
+      setStatus('error');
+      setMessage(error instanceof Error ? error.message : fallbackErrorMessage);
     }
   };
 
@@ -77,16 +74,24 @@ function useContactForm() {
 
 function ContactMainSection() {
   const { enabled, config } = useIntro();
-  const { values, status, message, updateField, handleSubmit } = useContactForm();
+  const { values, status, message, updateField, handleSubmit } =
+    useContactForm();
+  const { isDark } = useTheme();
 
   const handleFieldChange =
     (field: keyof ContactPayload) =>
-    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    (
+      event: ChangeEvent<
+        HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+      >,
+    ) => {
       updateField(field, event.target.value);
     };
 
   return (
-    <section className="relative overflow-hidden pt-[152px] pb-24 lg:pt-[176px] lg:pb-32 !bg-white">
+    <section
+      className={`relative overflow-hidden pt-[152px] pb-24 lg:pt-[176px] lg:pb-32 ${isDark ? '!bg-surface' : '!bg-white'}`}
+    >
       {enabled && (
         <div
           id={config.heroAnchorId}
@@ -104,12 +109,14 @@ function ContactMainSection() {
                 Have a Question? We&apos;re here to help you
               </h1>
               <p className="type-body max-w-lg text-lg">
-                Share a few details about what you need and our team will help you
-                understand what comes next.
+                Share a few details about what you need and our team will help
+                you understand what comes next.
               </p>
             </div>
             <div className="flex flex-col gap-3">
-              <p className="font-body text-text-body text-lg">Or just wanna say hi?</p>
+              <p className="font-body text-text-body text-lg">
+                Or just wanna say hi?
+              </p>
               <a
                 href="mailto:hello@mydrcapsule.com"
                 className="font-display text-text hover:text-primary text-2xl"
@@ -184,7 +191,10 @@ function ContactMainSection() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label htmlFor="contact-description" className={fieldLabelClass}>
+                <label
+                  htmlFor="contact-description"
+                  className={fieldLabelClass}
+                >
                   Description
                 </label>
                 <textarea
@@ -205,7 +215,10 @@ function ContactMainSection() {
                 className="bg-primary font-display flex items-center justify-center gap-2 rounded-[12px] px-8 py-4 text-lg font-medium text-white transition-opacity hover:opacity-90 disabled:pointer-events-none disabled:opacity-60"
               >
                 {status === 'submitting' && (
-                  <LoaderCircle className="h-5 w-5 animate-spin" aria-hidden="true" />
+                  <LoaderCircle
+                    className="h-5 w-5 animate-spin"
+                    aria-hidden="true"
+                  />
                 )}
                 {status === 'submitting' ? 'Sending...' : 'Submit Requirement'}
               </button>
@@ -221,9 +234,15 @@ function ContactMainSection() {
                   }`}
                 >
                   {status === 'success' ? (
-                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
+                    <CheckCircle2
+                      className="mt-0.5 h-5 w-5 shrink-0"
+                      aria-hidden="true"
+                    />
                   ) : (
-                    <XCircle className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
+                    <XCircle
+                      className="mt-0.5 h-5 w-5 shrink-0"
+                      aria-hidden="true"
+                    />
                   )}
                   <span>{message}</span>
                 </p>

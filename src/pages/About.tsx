@@ -7,8 +7,10 @@ import { CtaBanner } from '@/components/common/CtaBanner';
 import { FeatureGrid } from '@/components/common/FeatureGrid';
 import AboutProblemVision from '@/sections/AboutProblemVision';
 import { ABOUT_FEATURES } from '@/constants/site';
+import { useTheme } from '@/context/ThemeContext';
 
 function AboutPage() {
+  const { isDark } = useTheme();
   return (
     <>
       <Navbar />
@@ -29,7 +31,7 @@ function AboutPage() {
           items={ABOUT_FEATURES}
         />
         <Section
-          background="white"
+          background={isDark ? 'surface' : 'white'}
           padding="none"
           fullWidth
           className="py-24 lg:py-28"

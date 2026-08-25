@@ -1,6 +1,8 @@
 import { memo, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { useTheme } from '@/context/ThemeContext';
+import { cn } from '@/utils/cn';
 
 interface ArticleCardProps {
   image: string;
@@ -16,9 +18,6 @@ interface ArticleCardProps {
   href?: string;
 }
 
-const cardClassName =
-  'border-border card-hover flex h-full flex-col overflow-hidden rounded-[var(--radius-card-lg)] border bg-white';
-
 function CardContent({
   image,
   tag,
@@ -31,6 +30,8 @@ function CardContent({
   authorPhoto,
   date,
 }: ArticleCardProps) {
+  const { isDark } = useTheme();
+
   return (
     <>
       <img
@@ -44,15 +45,36 @@ function CardContent({
         <div className="flex flex-col gap-4">
           <div className="flex flex-wrap items-center gap-3">
             <span
-              className="font-display rounded-[10px] px-3 py-1 text-sm"
+              className="font-display rounded-[10px] px-3 py-1 text-sm transition-colors duration-300"
               style={{ backgroundColor: tagBg, color: tagText }}
             >
               {tag}
             </span>
-            <span className="font-body text-text text-xs font-semibold">{readTime}</span>
+            <span
+              className={cn(
+                'font-body text-xs font-semibold',
+                isDark ? 'text-white/80' : 'text-text',
+              )}
+            >
+              {readTime}
+            </span>
           </div>
-          <p className="font-display text-text text-xl">{title}</p>
-          <p className="type-body text-sm">{excerpt}</p>
+          <p
+            className={cn(
+              'font-display text-xl font-medium',
+              isDark ? 'text-white' : 'text-text',
+            )}
+          >
+            {title}
+          </p>
+          <p
+            className={cn(
+              'type-body text-sm',
+              isDark ? 'text-white/70' : 'text-text-body',
+            )}
+          >
+            {excerpt}
+          </p>
         </div>
 
         <div className="flex items-center justify-between">
@@ -65,8 +87,22 @@ function CardContent({
               className="h-9 w-9 shrink-0 rounded-full object-cover"
             />
             <div>
-              <p className="font-display text-text text-sm">{author}</p>
-              <p className="font-body text-muted text-xs">{date}</p>
+              <p
+                className={cn(
+                  'font-display text-sm font-medium',
+                  isDark ? 'text-white' : 'text-text',
+                )}
+              >
+                {author}
+              </p>
+              <p
+                className={cn(
+                  'font-body text-xs',
+                  isDark ? 'text-white/50' : 'text-muted',
+                )}
+              >
+                {date}
+              </p>
             </div>
           </div>
           <span
@@ -82,6 +118,13 @@ function CardContent({
 }
 
 function ArticleCardComponent(props: ArticleCardProps): ReactNode {
+  const { isDark } = useTheme();
+
+  const cardClassName = cn(
+    'card-hover flex h-full flex-col overflow-hidden rounded-[var(--radius-card-lg)]  backdrop-blur-sm transition-colors duration-300 bg-(--color-background)',
+    isDark ? '' : 'border-border',
+  );
+
   if (props.href) {
     return (
       <Link to={props.href} className={cardClassName}>
