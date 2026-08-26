@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import ctaPhoneMockup from '@/assets/images/cta-phone-mockup.png';
 import { useComingSoon } from './ComingSoonDialog';
-import appleStore from '@/assets/images/apple_store.svg';
-import playStore from '@/assets/images/play_store.svg';
+import appleStore from '@/assets/images/apple-store.svg';
+import playStore from '@/assets/images/play-store.svg';
 import { useTheme } from '@/context/ThemeContext';
 
 function CtaBannerComponent() {

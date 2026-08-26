@@ -2,9 +2,8 @@ import aboutConsultationsImg from '@/assets/images/about-consultations.jpg';
 import articleChildHealthImg from '@/assets/images/article-child-health.jpg';
 import articleNutritionImg from '@/assets/images/article-nutrition.jpg';
 import articleWomensHealthImg from '@/assets/images/article-womens-health.jpg';
-import doctorAnjaliDesaiImg from '@/assets/images/doctor-anjali-desai.jpg';
-import doctorKavithaIyerImg from '@/assets/images/doctor-kavitha-iyer.jpg';
-import doctorNishaAgarwalImg from '@/assets/images/doctor-nisha-agarwal.jpg';
+import doctorPriyaSharmaImg from '@/assets/images/doctor-priya-sharma.svg';
+import articleDiabetesImg from '@/assets/images/health-tips-1.svg';
 import type { HealthArticle } from '@/components/intro/types';
 
 export const SITE_NAME = 'MyDoctorCapsule';
@@ -404,8 +403,128 @@ export const CONTACT_HELP_TOPICS = [
 ] as const;
 
 export const HEALTH_ARTICLES: readonly HealthArticle[] = [
-  {
+   {
     slug: 1,
+    id: 'how-to-control-diabetes',
+    tag: 'Diabetes',
+    tagBg: '#ffede0',
+    tagText: '#ff6200',
+    readTime: '5 Min Read',
+    title: 'How to Control Diabetes',
+    excerpt:
+      '5 effective lifestyle changes that make a real difference to blood sugar management.',
+    author: 'Dr. Priya Sharma',
+    authorPhoto: doctorPriyaSharmaImg,
+    date: 'Aug 15, 2026',
+    image: articleDiabetesImg,
+    content: {
+      intro: [
+        'Diabetes affects how your body manages blood sugar, and small daily choices can make a significant difference to long-term outcomes. Understanding your numbers and building sustainable habits is often more effective than short-term fixes.',
+        'Regular monitoring and working closely with your healthcare provider can help you catch changes early and adjust your routine before small issues become bigger ones.',
+      ],
+      highlight: 'Consistency in daily habits matters more than any single dramatic change.',
+      sections: [
+        {
+          heading: 'Know Your Blood Sugar Numbers',
+          body: 'Understanding your fasting glucose, post-meal levels and HbA1c gives you and your doctor a clear picture of how well your diabetes is managed over time.',
+        },
+        {
+          heading: 'Everyday Habits That Help',
+          body: 'Regular meal timing, portion awareness, daily movement and consistent sleep all support steadier blood sugar levels. Small, sustainable changes tend to outlast strict short-term diets.',
+        },
+        {
+          heading: 'When to Seek Professional Care',
+          body: 'If you notice frequent thirst, fatigue, blurred vision or wounds that heal slowly, speak with a healthcare professional. Regular check-ups help catch complications early.',
+        },
+        {
+          heading: 'Final Thoughts',
+          body: 'Managing diabetes well is a long-term partnership between you and your care team. With the right habits and regular monitoring, most people manage it successfully while living full, active lives.',
+        },
+      ],
+    },
+  },
+  {
+    slug: 2,
+    id: 'heart-health-tips',
+    tag: 'Diabetes',
+    tagBg: '#ffede0',
+    tagText: '#ff6200',
+    readTime: '5 Min Read',
+    title: 'How to Control Diabetes',
+    excerpt:
+      '5 effective lifestyle changes that make a real difference to blood sugar management.',
+    author: 'Dr. Priya Sharma',
+    authorPhoto: doctorPriyaSharmaImg,
+    date: 'Aug 15, 2026',
+    image: articleDiabetesImg,
+    content: {
+      intro: [
+        'Diabetes affects how your body manages blood sugar, and small daily choices can make a significant difference to long-term outcomes. Understanding your numbers and building sustainable habits is often more effective than short-term fixes.',
+        'Regular monitoring and working closely with your healthcare provider can help you catch changes early and adjust your routine before small issues become bigger ones.',
+      ],
+      highlight: 'Consistency in daily habits matters more than any single dramatic change.',
+      sections: [
+        {
+          heading: 'Know Your Blood Sugar Numbers',
+          body: 'Understanding your fasting glucose, post-meal levels and HbA1c gives you and your doctor a clear picture of how well your diabetes is managed over time.',
+        },
+        {
+          heading: 'Everyday Habits That Help',
+          body: 'Regular meal timing, portion awareness, daily movement and consistent sleep all support steadier blood sugar levels. Small, sustainable changes tend to outlast strict short-term diets.',
+        },
+        {
+          heading: 'When to Seek Professional Care',
+          body: 'If you notice frequent thirst, fatigue, blurred vision or wounds that heal slowly, speak with a healthcare professional. Regular check-ups help catch complications early.',
+        },
+        {
+          heading: 'Final Thoughts',
+          body: 'Managing diabetes well is a long-term partnership between you and your care team. With the right habits and regular monitoring, most people manage it successfully while living full, active lives.',
+        },
+      ],
+    },
+  },
+  {
+    slug: 3,
+    id: 'understanding-kidney-health',
+    tag: 'Diabetes',
+    tagBg: '#ffede0',
+    tagText: '#ff6200',
+    readTime: '5 Min Read',
+    title: 'How to Control Diabetes',
+    excerpt:
+      '5 effective lifestyle changes that make a real difference to blood sugar management.',
+    author: 'Dr. Priya Sharma',
+    authorPhoto: doctorPriyaSharmaImg,
+    date: 'Aug 15, 2026',
+    image: articleDiabetesImg,
+    content: {
+      intro: [
+        'Diabetes affects how your body manages blood sugar, and small daily choices can make a significant difference to long-term outcomes. Understanding your numbers and building sustainable habits is often more effective than short-term fixes.',
+        'Regular monitoring and working closely with your healthcare provider can help you catch changes early and adjust your routine before small issues become bigger ones.',
+      ],
+      highlight: 'Consistency in daily habits matters more than any single dramatic change.',
+      sections: [
+        {
+          heading: 'Know Your Blood Sugar Numbers',
+          body: 'Understanding your fasting glucose, post-meal levels and HbA1c gives you and your doctor a clear picture of how well your diabetes is managed over time.',
+        },
+        {
+          heading: 'Everyday Habits That Help',
+          body: 'Regular meal timing, portion awareness, daily movement and consistent sleep all support steadier blood sugar levels. Small, sustainable changes tend to outlast strict short-term diets.',
+        },
+        {
+          heading: 'When to Seek Professional Care',
+          body: 'If you notice frequent thirst, fatigue, blurred vision or wounds that heal slowly, speak with a healthcare professional. Regular check-ups help catch complications early.',
+        },
+        {
+          heading: 'Final Thoughts',
+          body: 'Managing diabetes well is a long-term partnership between you and your care team. With the right habits and regular monitoring, most people manage it successfully while living full, active lives.',
+        },
+      ],
+    },
+  },
+  {
+    slug: 4,
     id: 'womens-wellness-guide',
     tag: "Women's Health",
     tagBg: '#ffddc5',
@@ -415,7 +534,7 @@ export const HEALTH_ARTICLES: readonly HealthArticle[] = [
     excerpt:
       'Essential health checks, hormonal milestones and preventive care every woman should know.',
     author: 'Dr. Anjali Desai',
-    authorPhoto: doctorAnjaliDesaiImg,
+    authorPhoto: doctorPriyaSharmaImg,
     date: 'Aug 15, 2026',
     image: articleWomensHealthImg,
     content: {
@@ -513,7 +632,7 @@ export const HEALTH_ARTICLES: readonly HealthArticle[] = [
     },
   },
   {
-    slug: 2,
+    slug: 5,
     id: 'healthy-eating-for-children',
     tag: 'Child Health',
     tagBg: '#dafffd',
@@ -523,7 +642,7 @@ export const HEALTH_ARTICLES: readonly HealthArticle[] = [
     excerpt:
       'Building lifelong healthy habits through good nutrition in the early years.',
     author: 'Dr. Kavitha Iyer',
-    authorPhoto: doctorKavithaIyerImg,
+    authorPhoto: doctorPriyaSharmaImg,
     date: 'Aug 15, 2026',
     image: articleChildHealthImg,
     content: {
@@ -553,7 +672,7 @@ export const HEALTH_ARTICLES: readonly HealthArticle[] = [
     },
   },
   {
-    slug: 3,
+    slug: 6,
     id: 'nutrition-fundamentals',
     tag: 'Diabetes',
     tagBg: '#fff1f9',
@@ -563,7 +682,7 @@ export const HEALTH_ARTICLES: readonly HealthArticle[] = [
     excerpt:
       'What your body actually needs and how to give it consistently without fad diets.',
     author: 'Dr. Nisha Agarwal',
-    authorPhoto: doctorNishaAgarwalImg,
+    authorPhoto: doctorPriyaSharmaImg,
     date: 'Aug 15, 2026',
     image: articleNutritionImg,
     content: {
@@ -594,8 +713,8 @@ export const HEALTH_ARTICLES: readonly HealthArticle[] = [
   },
 ] as const;
 
-export const FEATURED_ARTICLES = HEALTH_ARTICLES.slice(0, 3);
-export const ALL_ARTICLES = HEALTH_ARTICLES.slice(3, 6);
+export const FEATURED_ARTICLES = HEALTH_ARTICLES.slice(3, 6);
+export const ALL_ARTICLES = HEALTH_ARTICLES.slice(0, 3);
 
 export function getArticleBySlug(slug: number) {
   return HEALTH_ARTICLES.find((article) => article.slug === slug);

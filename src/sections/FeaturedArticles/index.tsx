@@ -6,7 +6,7 @@ import {
   StaggerContainer,
   StaggerItem,
 } from '@/components/common/MotionWrappers';
-import { HEALTH_ARTICLES } from '@/constants/site';
+import { FEATURED_ARTICLES } from '@/constants/site';
 import { useTheme } from '@/context/ThemeContext';
 
 function FeaturedArticlesSection() {
@@ -39,7 +39,7 @@ function FeaturedArticlesSection() {
 
         <StaggerContainer className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {[...Array(3)].flatMap(() =>
-            HEALTH_ARTICLES.map((article) => (
+            FEATURED_ARTICLES.map((article) => (
               <StaggerItem key={`${article.id}-${Math.random()}`}>
                 <ArticleCard
                   image={article.image}

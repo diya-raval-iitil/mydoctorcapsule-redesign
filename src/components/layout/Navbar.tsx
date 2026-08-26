@@ -1,6 +1,6 @@
 import { memo, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/common/Button';
 import { NAV_LINKS } from '@/constants/navigation';
@@ -8,6 +8,7 @@ import { NAV_LINKS } from '@/constants/navigation';
 import { useBodyScrollLock } from '@/hooks/useScrollPosition';
 import { cn } from '@/utils/cn';
 import { useIntro } from '@/components/intro';
+import { useTheme } from '@/context/ThemeContext';
 import {
   drawer,
   motionTransition,
@@ -17,13 +18,19 @@ import {
   staggerItemVariants,
 } from '@/animations';
 import { ThemeToggle } from '../common/ThemeToggle';
+import lightBrandLogo from '@/assets/images/my-doctor-logo-light.svg';
+import lightIconLogo from '@/assets/images/yaka-brand-light.svg';
 
-const navLinkClass = (isActive: boolean) =>
+const navLinkClass = (isActive: boolean, isLight: boolean) =>
   cn(
     'font-display text-[15px] leading-5 whitespace-nowrap transition-colors',
-    isActive
-      ? 'font-bold text-white'
-      : 'font-normal text-white/70 hover:text-white',
+    isLight
+      ? isActive
+        ? 'font-bold text-black'
+        : 'font-normal text-black/70 hover:text-black'
+      : isActive
+        ? 'font-bold text-white'
+        : 'font-normal text-white/70 hover:text-white',
   );
 
 const MotionRouterLink = motion(Link);
@@ -31,7 +38,10 @@ const MotionRouterLink = motion(Link);
 function NavbarComponent() {
   const [isOpen, setIsOpen] = useState(false);
   const { enabled, phase, config } = useIntro();
+  const { pathname } = useLocation();
+  const { isDark } = useTheme();
 
+  const isContactLightTheme = pathname === '/contact' && !isDark;
   const introShift = enabled && (phase === 'scrolling' || phase === 'finished');
   const showNavIcon = enabled && phase === 'finished';
 
@@ -46,7 +56,12 @@ function NavbarComponent() {
         initial="hidden"
         animate="visible"
         variants={navbarContainerVariants}
-        className="dark:bg-navy fixed top-0 right-0 left-0 z-50 border-b border-white/10 bg-(--color-surface) backdrop-blur-lg"
+        className={cn(
+          'fixed top-0 right-0 left-0 z-50 border-b backdrop-blur-lg',
+          isContactLightTheme
+            ? 'border-black/10 bg-white'
+            : 'dark:bg-navy border-white/10 bg-(--color-surface)',
+        )}
       >
         <nav
           aria-label="Main navigation"
@@ -61,10 +76,14 @@ function NavbarComponent() {
               variants={navbarItemVariants}
             >
               <motion.img
-                src={config.logo}
+                src={isContactLightTheme ? lightBrandLogo : config.logo}
                 alt="logo"
                 className="h-full w-50 object-contain xl:w-48"
-                style={{ filter: 'brightness(0) invert(1)' }}
+                style={
+                  isContactLightTheme
+                    ? undefined
+                    : { filter: 'brightness(0) invert(1)' }
+                }
               />
             </MotionRouterLink>
 
@@ -79,7 +98,9 @@ function NavbarComponent() {
                   <NavLink
                     to={link.href}
                     end={link.href === '/'}
-                    className={({ isActive }) => navLinkClass(isActive)}
+                    className={({ isActive }) =>
+                      navLinkClass(isActive, isContactLightTheme)
+                    }
                   >
                     {link.label}
                   </NavLink>
@@ -120,7 +141,7 @@ function NavbarComponent() {
                   aria-hidden="true"
                 >
                   <img
-                    src={config.iconLogo}
+                    src={isContactLightTheme ? lightIconLogo : config.iconLogo}
                     alt=""
                     draggable={false}
                     className="h-full w-full object-contain"
@@ -145,7 +166,7 @@ function NavbarComponent() {
                   aria-hidden="true"
                 >
                   <img
-                    src={config.iconLogo}
+                    src={isContactLightTheme ? lightIconLogo : config.iconLogo}
                     alt=""
                     draggable={false}
                     className="h-full w-full object-contain"
@@ -156,7 +177,10 @@ function NavbarComponent() {
 
               <button
                 type="button"
-                className="relative flex h-10 w-10 items-center justify-center rounded-xl text-white"
+                className={cn(
+                  'relative flex h-10 w-10 items-center justify-center rounded-xl',
+                  isContactLightTheme ? 'text-black' : 'text-white',
+                )}
                 onClick={toggleMenu}
                 aria-label={isOpen ? 'Close menu' : 'Open menu'}
                 aria-expanded={isOpen}
