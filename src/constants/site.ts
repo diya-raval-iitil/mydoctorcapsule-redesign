@@ -4,6 +4,8 @@ import articleNutritionImg from '@/assets/images/article-nutrition.jpg';
 import articleWomensHealthImg from '@/assets/images/article-womens-health.jpg';
 import doctorPriyaSharmaImg from '@/assets/images/doctor-priya-sharma.svg';
 import articleDiabetesImg from '@/assets/images/health-tips-1.svg';
+import articleHeartHealthImg from '@/assets/images/health-tips-2.svg';
+import articleKidneyHealthImg from '@/assets/images/health-tips-3.svg';
 import type { HealthArticle } from '@/components/intro/types';
 
 export const SITE_NAME = 'MyDoctorCapsule';
@@ -456,7 +458,7 @@ export const HEALTH_ARTICLES: readonly HealthArticle[] = [
     author: 'Dr. Priya Sharma',
     authorPhoto: doctorPriyaSharmaImg,
     date: 'Aug 15, 2026',
-    image: articleDiabetesImg,
+    image: articleHeartHealthImg,
     content: {
       intro: [
         'Diabetes affects how your body manages blood sugar, and small daily choices can make a significant difference to long-term outcomes. Understanding your numbers and building sustainable habits is often more effective than short-term fixes.',
@@ -496,7 +498,7 @@ export const HEALTH_ARTICLES: readonly HealthArticle[] = [
     author: 'Dr. Priya Sharma',
     authorPhoto: doctorPriyaSharmaImg,
     date: 'Aug 15, 2026',
-    image: articleDiabetesImg,
+    image: articleKidneyHealthImg,
     content: {
       intro: [
         'Diabetes affects how your body manages blood sugar, and small daily choices can make a significant difference to long-term outcomes. Understanding your numbers and building sustainable habits is often more effective than short-term fixes.',
