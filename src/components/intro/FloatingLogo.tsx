@@ -91,7 +91,10 @@ function FloatingLogoComponent() {
       if (phase === 'hero') goToScrolling();
 
       // Navbar anchor is measured live so it tracks the pill morph exactly.
-      const nav = getElementCenter(config.navbarAnchorId) ?? hero;
+      const nav =
+        getElementCenter(`${config.navbarAnchorId}-desktop`) ??
+        getElementCenter(`${config.navbarAnchorId}-mobile`) ??
+        hero;
       const p = clamp((scrollY - config.scrollStart) / range, 0, 1);
 
       x.set(lerp(hero.x, nav.x, p));

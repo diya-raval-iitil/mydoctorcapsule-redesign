@@ -42,7 +42,7 @@ function NavbarComponent() {
   const { isDark } = useTheme();
 
   const isContactLightTheme = pathname === '/contact' && !isDark;
-  const introShift = enabled && (phase === 'scrolling' || phase === 'finished');
+  // const introShift = enabled && (phase === 'scrolling' || phase === 'finished');
   const showNavIcon = enabled && phase === 'finished';
 
   useBodyScrollLock(isOpen);
@@ -111,8 +111,8 @@ function NavbarComponent() {
             {/* Desktop Action Group */}
             <motion.div
               className="relative hidden items-center gap-4 xl:flex 2xl:gap-6"
-              animate={{ x: introShift ? -config.navbarShiftX : 0 }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              // animate={{ x: introShift ? -config.navbarShiftX : 0 }}
+              // transition={{ duration: 0.3, ease: 'easeInOut' }}
             >
               <motion.div variants={navbarItemVariants}>
                 <ThemeToggle />
@@ -132,7 +132,7 @@ function NavbarComponent() {
               {/* Desktop Intro Icon Anchor */}
               {enabled && (
                 <div
-                  id={config.navbarAnchorId}
+                  id={`${config.navbarAnchorId}-desktop`}
                   className="pointer-events-none flex shrink-0 items-center justify-center"
                   style={{
                     width: config.navbarLogoSize,
@@ -158,6 +158,7 @@ function NavbarComponent() {
               {/* Mobile / Tablet Intro Icon Display */}
               {enabled && (
                 <div
+                  id={`${config.navbarAnchorId}-mobile`}
                   className="pointer-events-none flex shrink-0 items-center justify-center"
                   style={{
                     width: config.navbarLogoSize,
