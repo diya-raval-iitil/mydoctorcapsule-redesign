@@ -21,6 +21,9 @@ function LoaderComponent() {
     return () => clearTimeout(timer);
   }, []);
 
+  const brandLogoSize = config.loaderLogoSize * 1.4;
+  const yakaLogoSize = config.loaderLogoSize;
+
   return (
     <motion.div
       className="fixed inset-0 z-[100] flex items-center justify-center"
@@ -45,12 +48,12 @@ function LoaderComponent() {
       />
 
       <div className="relative flex flex-col items-center gap-6">
-        {/* Fixed container for seamless logo cross-fade */}
+        {/* Fixed container sized to brand logo for seamless cross-fade */}
         <div
           className="relative flex items-center justify-center"
           style={{
-            width: config.loaderLogoSize,
-            height: config.loaderLogoSize,
+            width: brandLogoSize,
+            height: brandLogoSize,
           }}
         >
           {/* First Logo: Initial Brand Logo */}
@@ -78,7 +81,11 @@ function LoaderComponent() {
             src={config.brandLogo}
             alt="Yaka Logo"
             draggable={false}
-            className="absolute inset-0 h-full w-full object-contain"
+            className="absolute object-contain"
+            style={{
+              width: yakaLogoSize,
+              height: yakaLogoSize,
+            }}
             initial={{ opacity: 0, filter: 'blur(10px)', scale: 0.9 }}
             animate={{
               opacity: showYaka ? 1 : 0,

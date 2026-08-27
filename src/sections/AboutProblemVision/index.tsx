@@ -64,10 +64,10 @@ function AboutProblemVisionSection() {
         <div className="flex flex-col gap-14">
           <FadeLeft className="flex flex-col gap-6">
             <p className="type-kicker text-text">Our Vision</p>
-            <h2 className="type-section-title max-w-2xl">
+            <h2 className="type-section-title">
               One connected ecosystem for better healthcare access.
             </h2>
-            <p className="type-body max-w-2xl">
+            <p className="type-body">
               We aim to make everyday healthcare more convenient by connecting
               people with the services and professionals they need all from a
               single, trusted platform.
@@ -81,8 +81,8 @@ function AboutProblemVisionSection() {
                   className={cn(
                     'card-hover flex h-full flex-col items-center gap-4 rounded-[var(--radius-card-lg)] border p-8 text-center transition-colors duration-300',
                     isDark
-                      ? 'border-white/10 bg-slate-900/60'
-                      : 'border-border bg-white',
+                      ? 'border-white/10 bg-hero-gradient'
+                      : 'border border-[#2323231A] bg-[#FDFDFD]',
                   )}
                 >
                   <img

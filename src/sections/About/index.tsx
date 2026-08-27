@@ -95,7 +95,7 @@ function AboutSection() {
                     className={cn(
                       'card-hover flex h-full flex-col gap-8 rounded-[var(--radius-card-lg)] border p-8 backdrop-blur-sm transition-colors duration-300',
                       isDark
-                        ? 'border-white/10 bg-slate-900/60 text-white'
+                        ? 'border-white/10 bg-[#010920] text-white'
                         : 'border-border text-text bg-white',
                     )}
                   >

@@ -159,11 +159,11 @@ function HeroSection() {
                   from your phone.
                 </p>
 
-                <div className="grid grid-cols-1 gap-px overflow-hidden rounded-[var(--radius-card-lg)] border border-white/10 sm:grid-cols-3">
+                <div className="grid grid-cols-1 overflow-hidden rounded-[var(--radius-card-lg)] border border-[#232323] sm:grid-cols-3">
                   {HERO_HIGHLIGHTS.map((highlight) => (
                     <div
                       key={highlight.title}
-                      className="flex flex-col gap-3 bg-white/[0.03] p-6"
+                      className="flex flex-col gap-3 border-[#232323] bg-transparent p-6 sm:border-b-0 [&:not(:last-child)]:border-b sm:[&:not(:last-child)]:border-r"
                     >
                       <p className="font-display text-base font-medium text-white">
                         {highlight.title}
@@ -180,11 +180,11 @@ function HeroSection() {
                 <p className="font-display text-2xl text-white">
                   My Dr. Capsule in numbers
                 </p>
-                <div className="grid grid-cols-2 gap-px overflow-hidden rounded-[var(--radius-card-lg)] border border-white/10">
+                <div className="grid grid-cols-2 overflow-hidden rounded-[var(--radius-card-lg)] border border-[#232323]">
                   {STATS.map((stat) => (
                     <div
                       key={stat.label}
-                      className="flex flex-col items-center gap-3 bg-white/[0.03] px-6 py-10 text-center"
+                      className="flex flex-col items-center gap-3 border-[#232323] bg-transparent px-6 py-10 text-center [&:nth-child(-n+2)]:border-b [&:nth-child(odd)]:border-r"
                     >
                       <p className="font-display text-4xl font-normal text-white">
                         <AnimatedCounter

@@ -13,10 +13,14 @@ function CtaBannerComponent() {
     <div className="bg-surface-alt border-border flex flex-col items-center gap-12 rounded-[30px] border p-10 lg:flex-row lg:justify-between lg:p-14">
       <div className="flex flex-col items-start gap-8">
         <div className="flex flex-col gap-4">
-          <h3 className="type-section-title max-w-lg !text-[clamp(28px,3.4vw,40px)]">
+          <h3
+            className={`type-section-title max-w-xl font-normal! ${!isDark && 'text-[#232323]!'}`}
+          >
             Manage Your Health Smarter with MyDoctorCapsule!
           </h3>
-          <p className="type-body max-w-xl">
+          <p
+            className={`type-body max-w-xl ${isDark ? 'text-[#A0A0A0]!' : 'text-[#454545]!'}`}
+          >
             Explain that the complete property platform is coming soon.
           </p>
         </div>
@@ -26,7 +30,7 @@ function CtaBannerComponent() {
           <button
             type="button"
             onClick={openComingSoon}
-            className={`flex items-center gap-3 rounded-xl border border-white/20 px-5 py-2.5 text-white transition-all focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:outline-none ${
+            className={`flex items-center gap-3 rounded-xl border border-[#193250] px-5 py-2.5 text-white transition-all focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:outline-none ${
               isDark
                 ? 'bg-[#091027] hover:bg-[#010920]'
                 : 'bg-[#010920] hover:bg-black'
@@ -36,7 +40,7 @@ function CtaBannerComponent() {
             <img src={appleStore} alt="App Store" className="h-7 w-7" />
 
             <div className="flex flex-col text-left">
-              <span className="text-[10px] tracking-wider text-gray-300 uppercase">
+              <span className="text-[10px] tracking-wider text-white uppercase">
                 Download on the
               </span>
               <span className="text-sm leading-tight font-semibold">
@@ -48,7 +52,7 @@ function CtaBannerComponent() {
           <button
             type="button"
             onClick={openComingSoon}
-            className={`flex items-center gap-3 rounded-xl border border-white/20 px-5 py-2.5 text-white transition-all focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:outline-none ${
+            className={`flex items-center gap-3 rounded-xl border border-[#193250] px-5 py-2.5 text-white transition-all focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:outline-none ${
               isDark
                 ? 'bg-[#091027] hover:bg-[#010920]'
                 : 'bg-[#010920] hover:bg-black'
@@ -58,7 +62,7 @@ function CtaBannerComponent() {
             <img src={playStore} alt="Google Play" className="h-7 w-7" />
 
             <div className="flex flex-col text-left">
-              <span className="text-[10px] tracking-wider text-gray-300 uppercase">
+              <span className="text-[10px] tracking-wider text-white uppercase">
                 Get it on
               </span>
               <span className="text-sm leading-tight font-semibold">

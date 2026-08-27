@@ -29,6 +29,7 @@ function AboutPage() {
           kicker="What We Bring Together"
           title="Everything you need for connected healthcare."
           items={ABOUT_FEATURES}
+          variant='dark'
         />
         <Section
           background={isDark ? 'surface' : 'white'}

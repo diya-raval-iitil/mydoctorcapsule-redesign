@@ -105,21 +105,27 @@ function ContactMainSection() {
         <div className="grid items-center gap-16 lg:grid-cols-2 lg:gap-12">
           <FadeLeft className="flex flex-col justify-between gap-12">
             <div className="flex flex-col gap-6">
-              <h1 className="type-hero max-w-xl">
+              <h1
+                className={`type-hero max-w-xl ${isDark ? 'text-white' : 'text-black'}`}
+              >
                 Have a Question? We&apos;re here to help you
               </h1>
-              <p className="type-body max-w-lg text-lg">
+              <p
+                className={`type-body max-w-lg text-lg ${isDark ? 'text-white/[0.698]!' : 'text-black!'}`}
+              >
                 Share a few details about what you need and our team will help
                 you understand what comes next.
               </p>
             </div>
             <div className="flex flex-col gap-3">
-              <p className="font-body text-text-body text-lg">
+              <p
+                className={`font-body text-lg ${isDark ? 'text-white/[0.698]!' : 'text-black/80'}`}
+              >
                 Or just wanna say hi?
               </p>
               <a
                 href="mailto:hello@mydrcapsule.com"
-                className="font-display text-text hover:text-primary text-2xl"
+                className={`font-display hover:text-primary text-2xl ${isDark ? 'text-white' : 'text-black'}`}
               >
                 hello@mydrcapsule.com
               </a>
@@ -220,7 +226,7 @@ function ContactMainSection() {
                     aria-hidden="true"
                   />
                 )}
-                {status === 'submitting' ? 'Sending...' : 'Submit Requirement'}
+                {status === 'submitting' ? 'Sending...' : 'Submit Request'}
               </button>
 
               {message && (
