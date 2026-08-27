@@ -83,14 +83,14 @@ function HeroSection() {
 
   return (
     <>
-      <section className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-[#010920] md:bg-gradient-to-b md:from-[#000508] md:via-[#2e4896] md:to-[#1246d6] pt-[180px] pb-24 lg:pt-[220px] lg:pb-32">
+      <section className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-[#010920] pt-[180px] pb-24 md:bg-gradient-to-b md:from-[#000508] md:via-[#2e4896] md:to-[#1246d6] lg:pt-[220px] lg:pb-32">
         {/* Background Video */}
         {videoMounted && (
           <video
             key={heroVideoSrc}
             ref={videoRef}
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 z-0 h-full w-full object-contain object-center pt-24 md:object-cover"
+            className="pointer-events-none absolute inset-0 z-0 h-full w-full object-contain object-center pt-18 md:object-cover"
             autoPlay
             muted
             loop
