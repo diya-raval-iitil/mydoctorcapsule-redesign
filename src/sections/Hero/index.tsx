@@ -138,7 +138,7 @@ function HeroSection() {
 
             <motion.h1
               variants={heroItem}
-              className="type-hero max-w-4xl text-white"
+              className="type-hero max-w-2xl text-white"
             >
               Healthcare Designed Around Your Daily Needs
             </motion.h1>
