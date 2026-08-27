@@ -121,7 +121,7 @@ function ArticleCardComponent(props: ArticleCardProps): ReactNode {
   const { isDark } = useTheme();
 
   const cardClassName = cn(
-    'card-hover flex h-full flex-col overflow-hidden rounded-[var(--radius-card-lg)]  backdrop-blur-sm transition-colors duration-300 bg-(--color-background)',
+    'card-hover flex h-full flex-col overflow-hidden rounded-[var(--radius-card-lg)]  backdrop-blur-sm transition-colors duration-300 bg-(--color-background) border border-[#2323231A]',
     isDark ? '' : 'border-border',
   );
 

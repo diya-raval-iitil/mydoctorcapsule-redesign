@@ -21,7 +21,7 @@ function LoaderComponent() {
     return () => clearTimeout(timer);
   }, []);
 
-  const brandLogoSize = config.loaderLogoSize * 1.4;
+  const brandLogoSize = config.loaderLogoSize * 2;
   const yakaLogoSize = config.loaderLogoSize;
 
   return (

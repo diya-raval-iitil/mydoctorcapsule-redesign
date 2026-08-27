@@ -1,4 +1,4 @@
-import { memo, useEffect, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { Container } from '@/components/common/Container';
 import { Button } from '@/components/common/Button';
 import { AnimatedCounter } from '@/components/ui/AnimatedCounter';
@@ -7,17 +7,45 @@ import { heroContainer, heroItem } from '@/animations';
 import { motion } from 'framer-motion';
 import { useIntro } from '@/components/intro';
 
+const MOBILE_BREAKPOINT_QUERY = '(max-width: 767px)';
+
 function HeroSection() {
   const { enabled, config } = useIntro();
   const [videoMounted, setVideoMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const mobileVideoFailedRef = useRef(false);
+  const [, forceRerenderAfterVideoError] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Mount video client-side to prevent SSR hydration autoplay blocks
+  // Mount video client-side to prevent SSR hydration autoplay blocks.
   useEffect(() => {
     setVideoMounted(true);
   }, []);
 
-  // Enforce muted state and auto-play fallbacks for mobile browsers
+  useEffect(() => {
+    const mql = window.matchMedia(MOBILE_BREAKPOINT_QUERY);
+    setIsMobile(mql.matches);
+
+    const handleChange = (event: MediaQueryListEvent) => {
+      setIsMobile(event.matches);
+    };
+
+    mql.addEventListener('change', handleChange);
+    return () => mql.removeEventListener('change', handleChange);
+  }, []);
+
+  const handleVideoError = useCallback(() => {
+    if (isMobile && !mobileVideoFailedRef.current) {
+      mobileVideoFailedRef.current = true;
+      forceRerenderAfterVideoError((n) => n + 1);
+    }
+  }, [isMobile]);
+
+  const heroVideoSrc =
+    isMobile && !mobileVideoFailedRef.current
+      ? '/hero_bg_video_mobile.mp4'
+      : '/hero_bg_video.mp4';
+
   useEffect(() => {
     if (!videoMounted) return;
     const video = videoRef.current;
@@ -51,7 +79,7 @@ function HeroSection() {
       document.removeEventListener('scroll', playVideo);
       document.removeEventListener('click', playVideo);
     };
-  }, [videoMounted]);
+  }, [videoMounted, heroVideoSrc]);
 
   return (
     <>
@@ -59,6 +87,7 @@ function HeroSection() {
         {/* Background Video */}
         {videoMounted && (
           <video
+            key={heroVideoSrc}
             ref={videoRef}
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-center"
@@ -67,8 +96,9 @@ function HeroSection() {
             loop
             playsInline
             webkit-playsinline="true"
+            onError={handleVideoError}
           >
-            <source src="/hero_bg_video.mp4" type="video/mp4" />
+            <source src={heroVideoSrc} type="video/mp4" />
           </video>
         )}
 
