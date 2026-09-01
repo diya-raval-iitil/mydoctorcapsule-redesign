@@ -23,38 +23,3 @@ export const SectionHeading = memo(function SectionHeading({
     <Component className={cn('type-section-title', className)}>{children}</Component>
   );
 });
-
-export const BodyText = memo(function BodyText({
-  children,
-  className,
-  as: Component = 'p',
-}: TypographyProps) {
-  return <Component className={cn('type-body', className)}>{children}</Component>;
-});
-
-export const Caption = memo(function Caption({
-  children,
-  className,
-  as: Component = 'p',
-}: TypographyProps) {
-  return <Component className={cn('type-caption', className)}>{children}</Component>;
-});
-
-interface HighlightHeadingProps {
-  children: ReactNode;
-  highlight: ReactNode;
-  className?: string;
-}
-
-export const HighlightHeading = memo(function HighlightHeading({
-  children,
-  highlight,
-  className,
-}: HighlightHeadingProps) {
-  return (
-    <h2 className={cn('type-section-title', className)}>
-      {children}{' '}
-      <span className="text-primary">{highlight}</span>
-    </h2>
-  );
-});

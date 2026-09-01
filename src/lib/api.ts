@@ -5,21 +5,25 @@ type ApiErrorResponse = {
 
 type ApiRequestConfig = Omit<RequestInit, 'body' | 'method'>;
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+const apiUrl = import.meta.env.VITE_API_URL;
 const fallbackErrorMessage = 'Unable to send your message. Please try again.';
 
 function getApiUrl() {
   if (!apiUrl) {
-    throw new Error('NEXT_PUBLIC_API_URL is required.');
+    throw new Error('VITE_API_URL is required.');
   }
 
   return apiUrl;
 }
 
 async function getErrorMessage(response: Response) {
-  const errorResponse = (await response.json().catch(() => null)) as ApiErrorResponse | null;
+  const errorResponse = (await response
+    .json()
+    .catch(() => null)) as ApiErrorResponse | null;
 
-  return errorResponse?.errors?.[0] ?? errorResponse?.message ?? fallbackErrorMessage;
+  return (
+    errorResponse?.errors?.[0] ?? errorResponse?.message ?? fallbackErrorMessage
+  );
 }
 
 async function request<T>(endpoint: string, config: RequestInit) {
