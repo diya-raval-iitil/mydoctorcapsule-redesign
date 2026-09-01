@@ -5,9 +5,14 @@ import { Footer } from '@/components/layout/Footer';
 import { Section } from '@/components/common/Section';
 import { Container } from '@/components/common/Container';
 import { CtaBanner } from '@/components/common/CtaBanner';
-import { FadeUp, FadeLeft, FadeRight } from '@/components/common/MotionWrappers';
+import {
+  FadeUp,
+  FadeLeft,
+  FadeRight,
+} from '@/components/common/MotionWrappers';
 import { getArticleBySlug } from '@/constants/site';
 import { useIntro } from '@/components/intro';
+import { useTheme } from '@/context/ThemeContext';
 
 function headingId(heading: string) {
   return heading
@@ -20,6 +25,7 @@ function HealthTipDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const { enabled, config } = useIntro();
   const article = getArticleBySlug(Number(slug));
+  const { isDark } = useTheme();
 
   if (!article) {
     return <Navigate to="/health-tips" replace />;
@@ -34,7 +40,10 @@ function HealthTipDetailPage() {
             <div
               id={config.heroAnchorId}
               className="pointer-events-none absolute top-20 right-8 z-20 md:right-12"
-              style={{ width: config.heroLogoSize, height: config.heroLogoSize }}
+              style={{
+                width: config.heroLogoSize,
+                height: config.heroLogoSize,
+              }}
               aria-hidden="true"
             />
           )}
@@ -46,7 +55,10 @@ function HealthTipDetailPage() {
                   Home
                 </Link>
                 <span className="text-white/60"> &nbsp;/&nbsp; </span>
-                <Link to="/health-tips" className="text-white/60 hover:text-white">
+                <Link
+                  to="/health-tips"
+                  className="text-white/60 hover:text-white"
+                >
                   Health Tips
                 </Link>
                 <span className="text-white/60"> &nbsp;/&nbsp; </span>
@@ -54,8 +66,12 @@ function HealthTipDetailPage() {
               </p>
 
               <div className="flex flex-col gap-6">
-                <h1 className="type-hero max-w-4xl text-white">{article.title}</h1>
-                <p className="font-display max-w-3xl text-2xl text-white/80">{article.excerpt}</p>
+                <h1 className="type-hero max-w-4xl text-white">
+                  {article.title}
+                </h1>
+                <p className="font-display max-w-3xl text-2xl text-white/80">
+                  {article.excerpt}
+                </p>
               </div>
 
               <div className="flex flex-wrap items-center gap-6">
@@ -68,14 +84,21 @@ function HealthTipDetailPage() {
                     className="h-[50px] w-[50px] shrink-0 rounded-full object-cover"
                   />
                   <div>
-                    <p className="font-display text-lg text-white">{article.author}</p>
-                    <p className="font-body text-sm text-white/80">{article.date}</p>
+                    <p className="font-display text-lg text-white">
+                      {article.author}
+                    </p>
+                    <p className="font-body text-sm text-white/80">
+                      {article.date}
+                    </p>
                   </div>
                 </div>
                 <span className="text-white/60">/</span>
                 <span
                   className="font-display rounded-[10px] px-4 py-1.5 text-base"
-                  style={{ backgroundColor: article.tagBg, color: article.tagText }}
+                  style={{
+                    backgroundColor: article.tagBg,
+                    color: article.tagText,
+                  }}
                 >
                   {article.tag}
                 </span>
@@ -88,29 +111,61 @@ function HealthTipDetailPage() {
         </section>
 
         <Section
-          background="white"
+          background={isDark ? 'surface' : 'white'}
           padding="none"
           fullWidth
-          className="pb-24 lg:pb-28 border-primary rounded-[var(--radius-panel)] border-t-8"
+          className="border-primary border-t-8 pb-24 lg:pb-28"
         >
-          <img
-            src={article.image}
-            alt={article.title}
-            loading="lazy"
-            decoding="async"
-            className="mb-16 aspect-[21/9] w-full rounded-[2rem] object-cover lg:mb-20"
-          />
+          <div className="relative mb-16 aspect-[21/9] w-full overflow-hidden lg:mb-20">
+            <img
+              src={article.image}
+              alt={article.title}
+              loading="lazy"
+              decoding="async"
+              className="h-full w-full object-cover"
+            />
+
+            <div
+              className={`absolute inset-0 transition-opacity duration-300 ${
+                isDark ? 'opacity-60' : 'opacity-0'
+              }`}
+              style={{
+                background:
+                  'linear-gradient(180deg, rgba(1, 9, 32, 0) 20%, #010920 100%)',
+              }}
+            />
+          </div>
 
           <div className="mx-auto grid w-full max-w-[var(--container-max)] gap-8 px-[var(--container-px)] lg:grid-cols-[minmax(0,380px)_1fr] lg:gap-14">
+            {/* Sidebar Table of Contents */}
             <FadeLeft>
-              <div className="border-border sticky top-28 flex flex-col gap-10 rounded-[var(--radius-card-lg)] border bg-white p-8">
-                <p className="font-display text-text text-[32px] font-medium">Table of contents</p>
-                <ul role="list" className="divide-border flex flex-col divide-y divide-dashed">
+              <div
+                className={`border-border sticky top-28 flex flex-col gap-6 rounded-[var(--radius-card-lg)] border p-8 bg-(--color-background)`}
+              >
+                <p
+                  className={`font-display text-[28px] font-medium ${
+                    isDark ? 'text-white' : 'text-text'
+                  }`}
+                >
+                  Table of contents
+                </p>
+
+                <ul
+                  role="list"
+                  className="divide-border flex flex-col divide-y divide-dashed text-lg font-medium"
+                >
                   {article.content.sections.map((section) => (
-                    <li key={section.heading} className="py-4 first:pt-0 last:pb-0">
+                    <li
+                      key={section.heading}
+                      className="py-4 first:pt-0 last:pb-0"
+                    >
                       <a
                         href={`#${headingId(section.heading)}`}
-                        className="font-display hover:text-primary text-xl text-black/80"
+                        className={`hover:text-primary transition-colors ${
+                          isDark
+                            ? 'text-white/80 hover:text-white'
+                            : 'text-text/80 hover:text-text'
+                        }`}
                       >
                         {section.heading}
                       </a>
@@ -120,28 +175,161 @@ function HealthTipDetailPage() {
               </div>
             </FadeLeft>
 
-            <FadeRight className="flex flex-col gap-10">
-              <div className="flex flex-col gap-6 text-xl leading-8 text-black/80">
+            {/* Right Main Content */}
+            <FadeRight className="flex flex-col gap-12">
+              {/* Intro Text */}
+              <div
+                className={`flex flex-col gap-6 text-xl leading-8 ${
+                  isDark ? 'text-white/80' : 'text-black/80'
+                }`}
+              >
                 {article.content.intro.map((paragraph, index) => (
                   <p key={index} className="font-display">
                     {paragraph}
                   </p>
                 ))}
-                <p className="font-display text-text font-semibold">
-                  {article.content.highlight}
-                </p>
+
+                {article.content.highlight && (
+                  <p
+                    className={`font-display font-semibold ${
+                      isDark ? 'text-white' : 'text-text'
+                    }`}
+                  >
+                    {article.content.highlight}
+                  </p>
+                )}
               </div>
 
+              {/* Sections */}
               {article.content.sections.map((section) => (
                 <div
                   key={section.heading}
                   id={headingId(section.heading)}
-                  className="flex scroll-mt-28 flex-col gap-4"
+                  className="flex scroll-mt-28 flex-col gap-6"
                 >
-                  <h2 className="font-display text-text text-[32px] font-medium">
+                  <h2
+                    className={`font-display text-[32px] font-semibold ${
+                      isDark ? 'text-white' : 'text-text'
+                    }`}
+                  >
                     {section.heading}
                   </h2>
-                  <p className="font-display text-xl leading-8 text-black/80">{section.body}</p>
+
+                  {/* Section Body */}
+                  {typeof section.body === 'string' && (
+                    <p
+                      className={`font-display text-xl leading-8 ${
+                        isDark ? 'text-white/80' : 'text-black/80'
+                      }`}
+                    >
+                      {section.body}
+                    </p>
+                  )}
+                  {Array.isArray(section.body) &&
+                    section.body.map((paragraph, pIdx) => (
+                      <p
+                        key={pIdx}
+                        className={`font-display text-xl leading-8 ${
+                          isDark ? 'text-white/80' : 'text-black/80'
+                        }`}
+                      >
+                        {paragraph}
+                      </p>
+                    ))}
+
+                  {section.sectionHighlight && (
+                    <p
+                      className={`font-display text-[20px] font-semibold ${
+                        isDark ? 'text-white' : 'text-text'
+                      }`}
+                    >
+                      {section.sectionHighlight}
+                    </p>
+                  )}
+
+                  {/* Subsections rendering with conditional sizing */}
+                  {section.subsections && section.subsections.length > 0 && (
+                    <div className="flex flex-col gap-6 pt-2">
+                      {section.subsections.map((sub, sIdx) => {
+                        const hasNumber = Boolean(sub.number);
+                        return (
+                          <div
+                            key={sIdx}
+                            className={`flex flex-col ${hasNumber ? 'gap-3' : 'gap-1.5'}`}
+                          >
+                            <h3
+                              className={`font-display ${
+                                hasNumber
+                                  ? 'text-2xl font-semibold'
+                                  : 'text-lg font-bold'
+                              } ${isDark ? 'text-white' : 'text-text'}`}
+                            >
+                              {hasNumber
+                                ? `${sub.number}. ${sub.heading}`
+                                : sub.heading}
+                            </h3>
+
+                            {typeof sub.body === 'string' && (
+                              <p
+                                className={`font-display ${
+                                  hasNumber
+                                    ? 'text-xl leading-8'
+                                    : 'text-base leading-relaxed'
+                                } ${isDark ? 'text-white/80' : 'text-black/80'}`}
+                              >
+                                {sub.body}
+                              </p>
+                            )}
+
+                            {Array.isArray(sub.body) &&
+                              sub.body.map((subPara, spIdx) => (
+                                <p
+                                  key={spIdx}
+                                  className={`font-display ${
+                                    hasNumber
+                                      ? 'text-xl leading-8'
+                                      : 'text-base leading-relaxed'
+                                  } ${isDark ? 'text-white/80' : 'text-black/80'}`}
+                                >
+                                  {subPara}
+                                </p>
+                              ))}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  {/* Bullets List Rendering (Keeps large text-xl sizing) */}
+                  {section.bulletsIntro && (
+                    <p
+                      className={`font-display text-xl leading-8 ${
+                        isDark ? 'text-white/80' : 'text-black/80'
+                      }`}
+                    >
+                      {section.bulletsIntro}
+                    </p>
+                  )}
+                  {section.bullets && section.bullets.length > 0 && (
+                    <ul
+                      className={`font-display flex list-disc flex-col gap-2 pl-6 text-lg leading-8 ${
+                        isDark ? 'text-white/80' : 'text-black/80'
+                      }`}
+                    >
+                      {section.bullets.map((bullet, bIdx) => (
+                        <li key={bIdx}>{bullet}</li>
+                      ))}
+                    </ul>
+                  )}
+                  {section.bulletsOutro && (
+                    <p
+                      className={`font-display text-xl leading-8 ${
+                        isDark ? 'text-white/80' : 'text-black/80'
+                      }`}
+                    >
+                      {section.bulletsOutro}
+                    </p>
+                  )}
                 </div>
               ))}
             </FadeRight>

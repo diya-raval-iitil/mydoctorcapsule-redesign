@@ -32,8 +32,8 @@ export const introConfig: IntroConfig = {
   navbarLogoSize: 34,
 
   // --- Loader timing (ms) -------------------------------------------------
-  loaderDuration: 3200,
-  loaderFadeDuration: 600,
+  loaderDuration: 3000,
+  loaderFadeDuration: 0,
 
   // --- Scroll hand-off range (px) -----------------------------------------
   scrollStart: 50,

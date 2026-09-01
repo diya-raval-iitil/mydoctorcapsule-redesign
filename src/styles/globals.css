@@ -71,15 +71,19 @@
   }
 
   body {
-    margin: 0;
-    font-family: var(--font-body);
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.625;
-    color: var(--color-text-body);
-    background-color: #010920;
-    overflow-x: clip;
-  }
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.625;
+  color: var(--color-text-body);
+  background-color: #010920;
+  overflow-x: clip;
+
+  transition:
+    background-color 300ms ease,
+    color 300ms ease;
+}
 
   h1,
   h2,
@@ -151,13 +155,7 @@
   }
 
   .bg-hero-gradient {
-    background: linear-gradient(
-      90deg,
-      #050d1f 0%,
-      #050d1f 82.91%,
-      #0a1c3e 145.1%,
-      #0c2461 207.28%
-    );
+    background: #010920;
   }
 
   .hero-glow {
@@ -358,4 +356,69 @@
       font-size: clamp(38px, 12vw, 52px);
     }
   }
+}
+
+:root {
+  /* Light theme */
+  --color-surface: #f5f8ff;
+  --color-surface-alt: #f8fafc;
+
+  --color-text: #0a1628;
+  --color-text-body: #5a6a8a;
+  --color-muted: #64748b;
+
+  --color-border: #e2e8f0;
+  --color-border-light: rgba(26, 86, 219, 0.12);
+
+  --color-background: #ffffff;
+  --color-card: #ffffff;
+
+  --color-hero-background: #050d1f;
+
+  --color-heading: #0a1628;
+
+  --color-body: #5a6a8a;
+
+  --color-header-background: rgba(255, 255, 255, 0.9);
+}
+
+html.dark {
+  /* Dark theme */
+  --color-surface: #FFFFFF08;
+
+  --color-surface-alt: #010920;
+
+  --color-text: #ffffff;
+  --color-text-body: #a7b3ca;
+  --color-muted: #8b98b2;
+
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-light: rgba(96, 165, 250, 0.15);
+
+  --color-background: #010920;
+  --color-card: #0b1730;
+
+  --color-hero-background: #010920;
+
+  --color-heading: #ffffff;
+
+  --color-body: #a7b3ca;
+
+  --color-header-background: rgba(1, 9, 32, 0.9);
+}
+
+:root {
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafc;
+  --border-card: rgba(0, 0, 0, 0.1);
+  --text-heading: #0f172a;
+  --text-muted: #475569;
+}
+
+html.dark {
+  --bg-card: rgba(15, 23, 42, 0.6);
+  --bg-card-hover: rgba(30, 41, 59, 0.8);
+  --border-card: rgba(255, 255, 255, 0.1);
+  --text-heading: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.7);
 }

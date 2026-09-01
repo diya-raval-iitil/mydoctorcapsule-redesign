@@ -1,9 +1,6 @@
 import { motion, type HTMLMotionProps } from 'framer-motion';
 import {
   fadeUpVariants,
-  fadeInVariants,
-  scaleInVariants,
-  blurRevealVariants,
   fadeLeftVariants,
   fadeRightVariants,
   staggerContainerVariants,
@@ -13,8 +10,6 @@ import {
   sectionHeadingVariants,
   sectionBodyVariants,
   sectionActionsVariants,
-  sectionImageVariants,
-  sectionFooterVariants,
   defaultViewport,
 } from '@/animations';
 import { useRevealAnimation } from '@/hooks/useRevealAnimation';
@@ -44,28 +39,6 @@ export function FadeUp({
     <motion.div
       ref={ref}
       variants={fadeUpVariants}
-      initial="hidden"
-      animate={animate}
-      className={cn(className)}
-      {...props}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-export function FadeIn({
-  className,
-  children,
-  animate: animateProp,
-  ...props
-}: MotionWrapperProps) {
-  const { ref, animate } = useWrapperReveal(animateProp);
-
-  return (
-    <motion.div
-      ref={ref}
-      variants={fadeInVariants}
       initial="hidden"
       animate={animate}
       className={cn(className)}
@@ -110,50 +83,6 @@ export function FadeRight({
     <motion.div
       ref={ref}
       variants={fadeRightVariants}
-      initial="hidden"
-      animate={animate}
-      className={cn(className)}
-      {...props}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-export function ScaleIn({
-  className,
-  children,
-  animate: animateProp,
-  ...props
-}: MotionWrapperProps) {
-  const { ref, animate } = useWrapperReveal(animateProp);
-
-  return (
-    <motion.div
-      ref={ref}
-      variants={scaleInVariants}
-      initial="hidden"
-      animate={animate}
-      className={cn(className)}
-      {...props}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-export function BlurReveal({
-  className,
-  children,
-  animate: animateProp,
-  ...props
-}: MotionWrapperProps) {
-  const { ref, animate } = useWrapperReveal(animateProp);
-
-  return (
-    <motion.div
-      ref={ref}
-      variants={blurRevealVariants}
       initial="hidden"
       animate={animate}
       className={cn(className)}
@@ -280,38 +209,6 @@ export function SectionActions({
   return (
     <motion.div
       variants={sectionActionsVariants}
-      className={cn(className)}
-      {...props}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-export function SectionImage({
-  className,
-  children,
-  ...props
-}: MotionWrapperProps) {
-  return (
-    <motion.div
-      variants={sectionImageVariants}
-      className={cn(className)}
-      {...props}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-export function SectionFooter({
-  className,
-  children,
-  ...props
-}: MotionWrapperProps) {
-  return (
-    <motion.div
-      variants={sectionFooterVariants}
       className={cn(className)}
       {...props}
     >

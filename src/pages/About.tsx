@@ -7,8 +7,10 @@ import { CtaBanner } from '@/components/common/CtaBanner';
 import { FeatureGrid } from '@/components/common/FeatureGrid';
 import AboutProblemVision from '@/sections/AboutProblemVision';
 import { ABOUT_FEATURES } from '@/constants/site';
+import { useTheme } from '@/context/ThemeContext';
 
 function AboutPage() {
+  const { isDark } = useTheme();
   return (
     <>
       <Navbar />
@@ -27,12 +29,13 @@ function AboutPage() {
           kicker="What We Bring Together"
           title="Everything you need for connected healthcare."
           items={ABOUT_FEATURES}
+          variant='dark'
         />
         <Section
-          background="white"
+          background={isDark ? 'surface' : 'white'}
           padding="none"
           fullWidth
-          className="rounded-[var(--radius-panel)] py-24 lg:py-28"
+          className="py-24 lg:py-28"
         >
           <div className="mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)]">
             <CtaBanner />

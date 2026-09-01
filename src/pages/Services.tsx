@@ -8,8 +8,10 @@ import { FeatureGrid } from '@/components/common/FeatureGrid';
 import ServicesPlatform from '@/sections/ServicesPlatform';
 import ServicesHighlights from '@/sections/ServicesHighlights';
 import { SERVICES_FEATURES } from '@/constants/site';
+import { useTheme } from '@/context/ThemeContext';
 
 function ServicesPage() {
+  const { isDark } = useTheme();
   return (
     <>
       <Navbar />
@@ -27,16 +29,17 @@ function ServicesPage() {
           kicker="What We Bring Together"
           title="Everything you need for connected healthcare."
           items={SERVICES_FEATURES}
+          className="border-primary border-t-8"
         />
         <div id="platform">
           <ServicesPlatform />
         </div>
         <ServicesHighlights />
         <Section
-          background="white"
+          background={isDark ? 'surface' : 'white'}
           padding="none"
           fullWidth
-          className="rounded-[var(--radius-panel)] py-24 lg:py-28"
+          className="py-24 lg:py-28"
         >
           <div className="mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)]">
             <CtaBanner />

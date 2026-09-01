@@ -1,15 +1,12 @@
 import aboutConsultationsImg from '@/assets/images/about-consultations.jpg';
-import articleDiabetesImg from '@/assets/images/article-diabetes.jpg';
-import articleHeartHealthImg from '@/assets/images/article-heart-health.jpg';
-import articleKidneyHealthImg from '@/assets/images/article-kidney-health.jpg';
-import articleWomensHealthImg from '@/assets/images/article-womens-health.jpg';
 import articleChildHealthImg from '@/assets/images/article-child-health.jpg';
 import articleNutritionImg from '@/assets/images/article-nutrition.jpg';
-import doctorPriyaSharmaImg from '@/assets/images/doctor-priya-sharma.jpg';
-import doctorRahulVermaImg from '@/assets/images/doctor-rahul-verma.jpg';
-import doctorAnjaliDesaiImg from '@/assets/images/doctor-anjali-desai.jpg';
-import doctorKavithaIyerImg from '@/assets/images/doctor-kavitha-iyer.jpg';
-import doctorNishaAgarwalImg from '@/assets/images/doctor-nisha-agarwal.jpg';
+import articleWomensHealthImg from '@/assets/images/article-womens-health.jpg';
+import doctorPriyaSharmaImg from '@/assets/images/doctor-priya-sharma.svg';
+import articleDiabetesImg from '@/assets/images/health-tips-1.svg';
+import articleHeartHealthImg from '@/assets/images/health-tips-2.svg';
+import articleKidneyHealthImg from '@/assets/images/health-tips-3.svg';
+import type { HealthArticle } from '@/components/intro/types';
 
 export const SITE_NAME = 'MyDoctorCapsule';
 export const SITE_TAGLINE =
@@ -21,10 +18,31 @@ export const VIEWPORT_ANIMATION = {
 } as const;
 
 export const STATS = [
-  { value: 2400, suffix: '+', label: 'Healthcare Providers', icon: 'building' as const },
-  { value: 180, suffix: 'K+', label: 'Patient Appointments', icon: 'calendar' as const },
-  { value: 4.9, suffix: '★', label: 'Average Platform Rating', icon: 'star' as const, decimals: 1 },
-  { value: 67, suffix: '%', label: 'Avg. Practice Growth', icon: 'trending' as const },
+  {
+    value: 2400,
+    suffix: '+',
+    label: 'Healthcare Providers',
+    icon: 'building' as const,
+  },
+  {
+    value: 180,
+    suffix: 'K+',
+    label: 'Patient Appointments',
+    icon: 'calendar' as const,
+  },
+  {
+    value: 4.9,
+    suffix: '★',
+    label: 'Average Platform Rating',
+    icon: 'star' as const,
+    decimals: 1,
+  },
+  {
+    value: 67,
+    suffix: '%',
+    label: 'Avg. Practice Growth',
+    icon: 'trending' as const,
+  },
 ] as const;
 
 export const HERO_HIGHLIGHTS = [
@@ -38,7 +56,8 @@ export const HERO_HIGHLIGHTS = [
   },
   {
     title: 'DISHA Compliance',
-    description: 'Secure healthcare services built around compliance and trust.',
+    description:
+      'Secure healthcare services built around compliance and trust.',
   },
 ] as const;
 
@@ -112,7 +131,12 @@ export const SERVICES = [
     description: 'Order medicines & upload prescriptions.',
     detailDescription:
       'Upload a prescription or reorder in one tap. Genuine medicines from verified pharmacy partners, delivered to your door with real-time order tracking.',
-    tags: ['Prescription upload', 'Same-day delivery', 'Genuine medicines', 'Order tracking'],
+    tags: [
+      'Prescription upload',
+      'Same-day delivery',
+      'Genuine medicines',
+      'Order tracking',
+    ],
     image:
       'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=1000&fit=crop',
   },
@@ -122,7 +146,12 @@ export const SERVICES = [
     description: 'Book lab tests & home sample collections.',
     detailDescription:
       'Choose from a wide range of lab tests and health packages. Free home sample collection with reports delivered securely to your dashboard.',
-    tags: ['Home sample collection', 'Digital reports', 'Health packages', 'Trusted labs'],
+    tags: [
+      'Home sample collection',
+      'Digital reports',
+      'Health packages',
+      'Trusted labs',
+    ],
     image:
       'https://images.unsplash.com/photo-1579154204601-01588f351e67?w=1000&fit=crop',
   },
@@ -132,7 +161,12 @@ export const SERVICES = [
     description: 'Access ambulance & emergency doctor support.',
     detailDescription:
       'One tap to request an ambulance or connect with an emergency doctor. Real-time dispatch tracking so help is never far away.',
-    tags: ['24/7 dispatch', 'Live tracking', 'Emergency doctors', 'Rapid response'],
+    tags: [
+      '24/7 dispatch',
+      'Live tracking',
+      'Emergency doctors',
+      'Rapid response',
+    ],
     image:
       'https://images.unsplash.com/photo-1516549655169-df83a0774514?w=1000&fit=crop',
   },
@@ -142,7 +176,12 @@ export const SERVICES = [
     description: 'Discover hospitals & clinics near you.',
     detailDescription:
       'Explore a verified network of hospitals, clinics, and diagnostic centres near you, complete with ratings, specialities, and directions.',
-    tags: ['Verified network', 'Ratings & reviews', 'Nearby search', 'Specialities'],
+    tags: [
+      'Verified network',
+      'Ratings & reviews',
+      'Nearby search',
+      'Specialities',
+    ],
     image:
       'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1000&fit=crop',
   },
@@ -157,7 +196,8 @@ export const ABOUT_FEATURES = [
   {
     id: 'clinics-hospitals',
     title: 'Clinics & Hospitals',
-    description: 'Locate and connect with trusted clinics and hospitals near you.',
+    description:
+      'Locate and connect with trusted clinics and hospitals near you.',
   },
   {
     id: 'medicines',
@@ -197,7 +237,8 @@ export const SERVICES_FEATURES = [
   {
     id: 'medical-assistance',
     title: 'Medical Assistance',
-    description: 'Get help navigating healthcare needs and finding the right support.',
+    description:
+      'Get help navigating healthcare needs and finding the right support.',
   },
   {
     id: 'health-management',
@@ -208,12 +249,14 @@ export const SERVICES_FEATURES = [
   {
     id: 'specialist-support',
     title: 'Specialist Support',
-    description: 'Access the right expertise based on your healthcare requirements.',
+    description:
+      'Access the right expertise based on your healthcare requirements.',
   },
   {
     id: 'personalised-care',
     title: 'Personalised Care',
-    description: 'Healthcare experiences designed around your individual needs.',
+    description:
+      'Healthcare experiences designed around your individual needs.',
   },
 ] as const;
 
@@ -323,22 +366,26 @@ export const SERVICES_HIGHLIGHTS = [
   {
     id: 'easy-access',
     title: 'Easy Access',
-    description: 'Find and book healthcare services in minutes, from any device.',
+    description:
+      'Find and book healthcare services in minutes, from any device.',
   },
   {
     id: 'convenient-experience',
     title: 'Convenient Experience',
-    description: 'Everything in one place — no more switching between apps or services.',
+    description:
+      'Everything in one place — no more switching between apps or services.',
   },
   {
     id: 'trusted-professionals',
     title: 'Trusted Professionals',
-    description: 'Every doctor and specialist on the platform is fully verified.',
+    description:
+      'Every doctor and specialist on the platform is fully verified.',
   },
   {
     id: 'digital-first-healthcare',
     title: 'Digital-first Healthcare',
-    description: 'Modern tools to manage your health from consultation to follow-up.',
+    description:
+      'Modern tools to manage your health from consultation to follow-up.',
   },
 ] as const;
 
@@ -357,8 +404,8 @@ export const CONTACT_HELP_TOPICS = [
   'Other',
 ] as const;
 
-export const HEALTH_ARTICLES = [
-  {
+export const HEALTH_ARTICLES: readonly HealthArticle[] = [
+   {
     slug: 1,
     id: 'how-to-control-diabetes',
     tag: 'Diabetes',
@@ -401,39 +448,39 @@ export const HEALTH_ARTICLES = [
   {
     slug: 2,
     id: 'heart-health-tips',
-    tag: 'Heart health',
-    tagBg: '#ffe6e6',
-    tagText: '#e60000',
+    tag: 'Diabetes',
+    tagBg: '#ffede0',
+    tagText: '#ff6200',
     readTime: '5 Min Read',
-    title: 'Heart health tips',
+    title: 'How to Control Diabetes',
     excerpt:
-      'Keep your heart pumping strong with these evidence backed habits and lifestyle choices.',
-    author: 'Dr. Rahul Verma',
-    authorPhoto: doctorRahulVermaImg,
+      '5 effective lifestyle changes that make a real difference to blood sugar management.',
+    author: 'Dr. Priya Sharma',
+    authorPhoto: doctorPriyaSharmaImg,
     date: 'Aug 15, 2026',
     image: articleHeartHealthImg,
     content: {
       intro: [
-        'Your heart works around the clock, and the habits you build over years matter more than any single lifestyle change. Small, consistent choices around movement, diet and stress can meaningfully lower your long-term risk.',
-        'Understanding your key numbers — blood pressure, cholesterol and resting heart rate — gives you and your doctor a clearer picture of your cardiovascular health.',
+        'Diabetes affects how your body manages blood sugar, and small daily choices can make a significant difference to long-term outcomes. Understanding your numbers and building sustainable habits is often more effective than short-term fixes.',
+        'Regular monitoring and working closely with your healthcare provider can help you catch changes early and adjust your routine before small issues become bigger ones.',
       ],
-      highlight: 'Heart health is built through daily habits, not occasional effort.',
+      highlight: 'Consistency in daily habits matters more than any single dramatic change.',
       sections: [
         {
-          heading: 'Know Your Numbers',
-          body: 'Blood pressure, cholesterol levels and resting heart rate are useful markers your healthcare provider can track over time to flag risk early.',
+          heading: 'Know Your Blood Sugar Numbers',
+          body: 'Understanding your fasting glucose, post-meal levels and HbA1c gives you and your doctor a clear picture of how well your diabetes is managed over time.',
         },
         {
           heading: 'Everyday Habits That Help',
-          body: 'Regular physical activity, a balanced diet lower in processed foods, quality sleep and stress management all support long-term heart health.',
+          body: 'Regular meal timing, portion awareness, daily movement and consistent sleep all support steadier blood sugar levels. Small, sustainable changes tend to outlast strict short-term diets.',
         },
         {
           heading: 'When to Seek Professional Care',
-          body: 'Chest discomfort, shortness of breath, irregular heartbeat or unusual fatigue should always be discussed with a healthcare professional promptly.',
+          body: 'If you notice frequent thirst, fatigue, blurred vision or wounds that heal slowly, speak with a healthcare professional. Regular check-ups help catch complications early.',
         },
         {
           heading: 'Final Thoughts',
-          body: 'Small, sustainable changes to daily habits, paired with regular check-ups, go a long way toward protecting your heart for the years ahead.',
+          body: 'Managing diabetes well is a long-term partnership between you and your care team. With the right habits and regular monitoring, most people manage it successfully while living full, active lives.',
         },
       ],
     },
@@ -441,38 +488,39 @@ export const HEALTH_ARTICLES = [
   {
     slug: 3,
     id: 'understanding-kidney-health',
-    tag: 'Kidney Health',
-    tagBg: '#e4e6ff',
-    tagText: '#001eff',
+    tag: 'Diabetes',
+    tagBg: '#ffede0',
+    tagText: '#ff6200',
     readTime: '5 Min Read',
-    title: 'Understanding Kidney Health',
-    excerpt: 'Simple, practical ways to support healthy kidneys and catch warning signs early.',
+    title: 'How to Control Diabetes',
+    excerpt:
+      '5 effective lifestyle changes that make a real difference to blood sugar management.',
     author: 'Dr. Priya Sharma',
     authorPhoto: doctorPriyaSharmaImg,
     date: 'Aug 15, 2026',
     image: articleKidneyHealthImg,
     content: {
       intro: [
-        'Your kidneys quietly filter waste and balance fluids in your body every day, often without any noticeable symptoms until a problem has progressed. Understanding the basics can help you catch changes early.',
-        'Routine blood and urine tests are often the easiest way to monitor kidney function, especially if you have risk factors like diabetes or high blood pressure.',
+        'Diabetes affects how your body manages blood sugar, and small daily choices can make a significant difference to long-term outcomes. Understanding your numbers and building sustainable habits is often more effective than short-term fixes.',
+        'Regular monitoring and working closely with your healthcare provider can help you catch changes early and adjust your routine before small issues become bigger ones.',
       ],
-      highlight: 'Kidney issues often develop silently, which is why routine checks matter.',
+      highlight: 'Consistency in daily habits matters more than any single dramatic change.',
       sections: [
         {
-          heading: 'Signs Your Kidneys Need Attention',
-          body: 'Changes in urination, persistent swelling, fatigue or unexplained back pain can sometimes signal kidney concerns worth discussing with a doctor.',
+          heading: 'Know Your Blood Sugar Numbers',
+          body: 'Understanding your fasting glucose, post-meal levels and HbA1c gives you and your doctor a clear picture of how well your diabetes is managed over time.',
         },
         {
           heading: 'Everyday Habits That Help',
-          body: 'Staying hydrated, managing blood pressure and blood sugar, and limiting excess salt intake all support healthy kidney function over time.',
+          body: 'Regular meal timing, portion awareness, daily movement and consistent sleep all support steadier blood sugar levels. Small, sustainable changes tend to outlast strict short-term diets.',
         },
         {
           heading: 'When to Seek Professional Care',
-          body: 'If you have diabetes, high blood pressure, or a family history of kidney disease, regular screening is especially important, even without symptoms.',
+          body: 'If you notice frequent thirst, fatigue, blurred vision or wounds that heal slowly, speak with a healthcare professional. Regular check-ups help catch complications early.',
         },
         {
           heading: 'Final Thoughts',
-          body: 'Simple daily habits and routine screening can help protect kidney function for the long term, particularly for those at higher risk.',
+          body: 'Managing diabetes well is a long-term partnership between you and your care team. With the right habits and regular monitoring, most people manage it successfully while living full, active lives.',
         },
       ],
     },
@@ -488,7 +536,7 @@ export const HEALTH_ARTICLES = [
     excerpt:
       'Essential health checks, hormonal milestones and preventive care every woman should know.',
     author: 'Dr. Anjali Desai',
-    authorPhoto: doctorAnjaliDesaiImg,
+    authorPhoto: doctorPriyaSharmaImg,
     date: 'Aug 15, 2026',
     image: articleWomensHealthImg,
     content: {
@@ -496,27 +544,91 @@ export const HEALTH_ARTICLES = [
         "Women's health changes throughout every stage of life. From menstrual health and hormonal changes to nutrition, mental wellbeing and preventive care, understanding your body can help you make more informed healthcare decisions.",
         'Regular check-ups and paying attention to changes in your body are important parts of maintaining long-term wellness.',
       ],
-      highlight: 'Small concerns are often easier to address when identified early.',
+      highlight:
+        'Small concerns are often easier to address when identified early.',
       sections: [
         {
           heading: 'Know Your Body & Hormonal Changes',
-          body: "Hormonal changes are a natural part of a woman's life and can affect energy, mood, sleep, skin, menstrual cycles and overall wellbeing. Tracking your cycle can help you notice patterns and changes over time.",
+          body: "Hormonal changes are a natural part of a woman's life and can affect energy, mood, sleep, skin, menstrual cycles, and overall wellbeing.",
+          subsections: [
+            {
+              number: '1',
+              heading: 'Menstrual Health Matters',
+              body: [
+                'Your menstrual cycle can provide useful information about your overall health. Changes in cycle length, flow, pain, or regularity may sometimes be worth discussing with a healthcare professional.',
+                'Keeping track of your cycle can help you understand your personal patterns and notice changes over time.',
+              ],
+            },
+            {
+              number: '2',
+              heading: 'Understand Major Life Stages',
+              body: [
+                'Women experience different health needs during adolescence, reproductive years, pregnancy and postpartum, perimenopause, and menopause.',
+                'Each stage may require different conversations with your healthcare provider, making regular healthcare support valuable throughout life.',
+              ],
+            },
+            {
+              number: '3',
+              heading: 'Prioritize Preventive Care',
+              body: 'Preventive healthcare is about staying ahead of potential health concerns. Depending on your age, history, and individual needs, your healthcare professional may recommend routine examinations, screenings, vaccinations, or specific tests.',
+            },
+          ],
         },
         {
           heading: 'Essential Health Checks',
-          body: 'Regular healthcare visits can help you stay informed about menstrual and reproductive health, blood pressure, age-appropriate screenings, nutrition and mental wellbeing.',
+          bulletsIntro:
+            'Regular healthcare visits can help you stay informed about your health and identify concerns that may need attention. Consider discussing the following with your healthcare provider:',
+          bullets: [
+            'General health and routine examinations',
+            'Menstrual and reproductive health',
+            'Blood pressure and other basic health measurements',
+            'Recommended age-appropriate screenings',
+            'Nutrition and lifestyle',
+            'Mental and emotional wellbeing',
+            'Family health history',
+            'Any new or persistent symptoms',
+          ],
+          bulletsOutro:
+            'Your recommended checks may vary based on your age, medical history, family history, and individual circumstances.',
         },
         {
           heading: 'Everyday Wellness Matters',
-          body: 'Eating well, staying active, prioritizing sleep and looking after your mental wellbeing are everyday habits that support long-term health, not just occasional check-ups.',
+          body: 'Good health is built through everyday habits, not just occasional check-ups.',
+          subsections: [
+            {
+              heading: 'Eat Well',
+              body: 'Aim for a varied, balanced diet that provides the nutrients your body needs. Include a range of fruits, vegetables, whole grains, protein sources, and healthy fats.',
+            },
+            {
+              heading: 'Stay Active',
+              body: 'Regular physical activity can support cardiovascular health, strength, mobility, energy, and overall wellbeing. Choose activities that are comfortable and sustainable for you.',
+            },
+            {
+              heading: 'Prioritize Sleep',
+              body: 'Consistent, quality sleep supports physical and mental wellbeing. Creating a regular sleep routine can make it easier to maintain healthy sleep habits.',
+            },
+            {
+              heading: 'Look After Your Mental Wellbeing',
+              body: 'Stress, emotional changes, work, relationships, and major life transitions can all affect wellbeing. Making time for yourself and seeking professional support when needed is an important part of complete healthcare.',
+            },
+          ],
         },
         {
           heading: 'When to Seek Professional Care',
-          body: "If you notice a persistent or unusual change, don't ignore it. The right guidance can help you understand what your body is telling you.",
+          body: [
+            "You know your body better than anyone. If you notice a persistent or unusual change, don't ignore it.",
+            'Consider speaking with a healthcare professional when you experience symptoms that concern you, changes that continue over time, or questions about your menstrual, hormonal, reproductive, or general health.',
+            '',
+          ],
+          sectionHighlight:
+            'Listening to your body is the first step toward effective preventive care.',
         },
         {
           heading: 'Final Thoughts',
-          body: "Women's wellness is about understanding your body, staying informed and having access to the right healthcare support at every stage of life.",
+          body: [
+            'Women’s wellness is about more than treating illness. It means understanding your body, staying informed, taking preventive steps, and having access to the right healthcare support when you need it.',
+            'With regular check-ups, healthy daily habits, and professional guidance, you can take a more active role in managing your health at every stage of life.',
+          ],
         },
       ],
     },
@@ -529,9 +641,10 @@ export const HEALTH_ARTICLES = [
     tagText: '#0090ff',
     readTime: '5 Min Read',
     title: 'Healthy Eating for Children',
-    excerpt: 'Building lifelong healthy habits through good nutrition in the early years.',
+    excerpt:
+      'Building lifelong healthy habits through good nutrition in the early years.',
     author: 'Dr. Kavitha Iyer',
-    authorPhoto: doctorKavithaIyerImg,
+    authorPhoto: doctorPriyaSharmaImg,
     date: 'Aug 15, 2026',
     image: articleChildHealthImg,
     content: {
@@ -547,7 +660,7 @@ export const HEALTH_ARTICLES = [
         },
         {
           heading: 'Everyday Habits That Help',
-          body: "Regular meal times, limiting sugary snacks and drinks, and involving children in meal preparation can all support healthier eating patterns over time.",
+          body: 'Regular meal times, limiting sugary snacks and drinks, and involving children in meal preparation can all support healthier eating patterns over time.',
         },
         {
           heading: 'When to Seek Professional Care',
@@ -568,9 +681,10 @@ export const HEALTH_ARTICLES = [
     tagText: '#ff0073',
     readTime: '5 Min Read',
     title: 'Nutrition Fundamentals',
-    excerpt: 'What your body actually needs and how to give it consistently without fad diets.',
+    excerpt:
+      'What your body actually needs and how to give it consistently without fad diets.',
     author: 'Dr. Nisha Agarwal',
-    authorPhoto: doctorNishaAgarwalImg,
+    authorPhoto: doctorPriyaSharmaImg,
     date: 'Aug 15, 2026',
     image: articleNutritionImg,
     content: {
@@ -601,8 +715,8 @@ export const HEALTH_ARTICLES = [
   },
 ] as const;
 
-export const FEATURED_ARTICLES = HEALTH_ARTICLES.slice(0, 3);
-export const ALL_ARTICLES = HEALTH_ARTICLES.slice(3, 6);
+export const FEATURED_ARTICLES = HEALTH_ARTICLES.slice(3, 6);
+export const ALL_ARTICLES = HEALTH_ARTICLES.slice(0, 3);
 
 export function getArticleBySlug(slug: number) {
   return HEALTH_ARTICLES.find((article) => article.slug === slug);
@@ -623,8 +737,7 @@ export const MOBILE_FEATURES = [
     icon: 'chart' as const,
   },
   {
-    label:
-      'Protect your sensitive medical data with end-to-end encryption.',
+    label: 'Protect your sensitive medical data with end-to-end encryption.',
     icon: 'lock' as const,
   },
   {

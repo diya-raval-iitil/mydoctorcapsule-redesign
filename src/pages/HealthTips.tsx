@@ -5,9 +5,10 @@ import { Section } from '@/components/common/Section';
 import { PageHero } from '@/components/common/PageHero';
 import { CtaBanner } from '@/components/common/CtaBanner';
 import FeaturedArticles from '@/sections/FeaturedArticles';
-import AllArticles from '@/sections/AllArticles';
+import { useTheme } from '@/context/ThemeContext';
 
 function HealthTipsPage() {
+  const { isDark } = useTheme();
   return (
     <>
       <Navbar />
@@ -22,14 +23,11 @@ function HealthTipsPage() {
         <div id="featured-articles">
           <FeaturedArticles />
         </div>
-        <div id="all-articles">
-          <AllArticles />
-        </div>
         <Section
-          background="white"
+          background={isDark ? 'surface' : 'white'}
           padding="none"
           fullWidth
-          className="rounded-[var(--radius-panel)] py-24 lg:py-28"
+          className="py-24 lg:py-28"
         >
           <div className="mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)]">
             <CtaBanner />

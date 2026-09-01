@@ -23,6 +23,7 @@ export function getElementCenter(id: string): Point | null {
   const el = document.getElementById(id);
   if (!el) return null;
   const rect = el.getBoundingClientRect();
+  if (rect.width === 0 && rect.height === 0) return null;
   return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
 }
 

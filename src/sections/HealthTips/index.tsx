@@ -10,24 +10,34 @@ import {
   StaggerItem,
 } from '@/components/common/MotionWrappers';
 import { ALL_ARTICLES } from '@/constants/site';
+import { useTheme } from '@/context/ThemeContext';
 
 function HealthTipsSection() {
+  const { isDark } = useTheme();
+
   return (
     <Section
       id="health-tips"
-      background="white"
+      background={isDark ? 'surface' : 'white'}
       padding="none"
       fullWidth
-      className="rounded-[var(--radius-panel)] py-24 lg:py-28"
+      className="py-24 lg:py-28"
     >
       <div className="mx-auto flex w-full max-w-[var(--container-max)] flex-col gap-16 px-[var(--container-px)]">
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
           <FadeLeft className="flex flex-col gap-6">
             <p className="type-kicker text-text">Health Tips</p>
-            <h2 className="type-section-title max-w-xl">Insights for a healthier life.</h2>
+            <h2 className="type-section-title max-w-xl">
+              Insights for a healthier life.
+            </h2>
           </FadeLeft>
           <FadeRight>
-            <Button variant="primary" size="sm" href="/health-tips" ariaLabel="Explore all health tips">
+            <Button
+              variant="primary"
+              size="sm"
+              href="/health-tips"
+              ariaLabel="Explore all health tips"
+            >
               Explore All
             </Button>
           </FadeRight>

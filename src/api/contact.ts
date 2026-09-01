@@ -7,8 +7,21 @@ export interface ContactPayload {
   description: string;
 }
 
+export interface ContactResponse {
+  status: number;
+  message: string;
+  data: {
+    received: boolean;
+  };
+}
+
 const BRAND = 'mydoctorcapsule';
 
-export async function submitContactForm(payload: ContactPayload) {
-  await api.post<void>('/contact', { ...payload, brand: BRAND });
+export async function submitContactForm(
+  payload: ContactPayload,
+): Promise<ContactResponse> {
+  return api.post<ContactResponse>('/contact', {
+    ...payload,
+    brand: BRAND,
+  });
 }
