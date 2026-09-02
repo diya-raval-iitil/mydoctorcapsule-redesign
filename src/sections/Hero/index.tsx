@@ -90,7 +90,7 @@ function HeroSection() {
             key={heroVideoSrc}
             ref={videoRef}
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 z-0 h-full w-full object-contain object-center pt-18 md:object-cover"
+            className="pointer-events-none absolute inset-0 z-0 h-full w-full object-contain object-top max-[640px]:pt-18 md:object-cover"
             autoPlay
             muted
             loop

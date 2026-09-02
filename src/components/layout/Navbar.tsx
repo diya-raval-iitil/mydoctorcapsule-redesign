@@ -60,7 +60,7 @@ function NavbarComponent() {
           'fixed top-0 right-0 left-0 z-50 border-b backdrop-blur-lg',
           isContactLightTheme
             ? 'border-black/10 bg-white'
-            : 'dark:bg-navy border-white/10 bg-(--color-surface)',
+            : 'border-white/10 bg-navy!',
         )}
       >
         <nav
