@@ -30,7 +30,7 @@ function PageHeroComponent({
   const { enabled, config } = useIntro();
 
   return (
-    <section className="bg-hero-gradient relative overflow-hidden pt-[220px] pb-24 lg:pt-[248px] lg:pb-32">
+    <section className="bg-hero-gradient relative overflow-hidden pt-[150px] pb-24 md:pt-[220px] lg:pt-[248px] lg:pb-32">
       {enabled && (
         <div
           id={config.heroAnchorId}
@@ -43,7 +43,7 @@ function PageHeroComponent({
       <Container className="relative z-10">
         <FadeUp className="flex flex-col gap-8">
           <div className="flex flex-wrap items-center gap-4">
-            <p className="type-kicker !text-[#FFFFFF] !font-normal">{kicker}</p>
+            <p className="type-kicker !font-normal !text-[#FFFFFF]">{kicker}</p>
             <span className="bg-primary font-body rounded-[var(--radius-button)] px-5 py-2.5 text-sm font-medium text-white">
               {badge}
             </span>

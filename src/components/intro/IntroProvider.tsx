@@ -8,7 +8,6 @@ import {
 } from 'react';
 import { useLenisInstance } from '@/providers/LenisProvider';
 import { introConfig } from './introConfig';
-import { isMobileViewport } from './utils';
 import type { IntroContextValue, IntroPhase } from './types';
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -27,8 +26,7 @@ export function IntroProvider({ children }: { children: ReactNode }) {
   // Skipped only below mobileBreakpoint. Do NOT gate on prefers-reduced-motion:
   // that preference was forcing enabled=false → phase='finished' → IntroOverlay
   // returned null, so Loader / FloatingLogo never mounted on desktop.
-  const [enabled] = useState(() => !isMobileViewport(config.mobileBreakpoint));
-
+  const [enabled] = useState(true);
   const [phase, setPhase] = useState<IntroPhase>(enabled ? 'loading' : 'finished');
   const [showLoader, setShowLoader] = useState(enabled);
 
